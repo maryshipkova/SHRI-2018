@@ -1,0 +1,65 @@
+.header {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.06rem solid #F0F0F0;
+    @include responsive(phone) {
+        border-bottom: none;
+    }
+    &__logo {
+        margin-right: 3.25rem;
+        margin-left: $edge-margin;
+        .logo {
+            width: 6.75rem;
+            height: auto;
+        }
+    }
+    &__nav {
+        position: relative;
+        @include responsive(phone) {
+            margin-left: auto;
+            margin-right: 1.25rem;
+        }
+        &__list {
+            @include responsive(phone) {
+                display: none;
+            }
+        }
+        &__item {
+            display: inline-block;
+            &:nth-child(1) {
+                margin-right: 1.75rem;
+            }
+            &:nth-child(2) {
+                margin-right: 1.63rem;
+            }
+        }
+        
+        &__checkbox {
+            display: none;
+        }
+        &__toggle {
+            display: none;
+            @include responsive(phone) {
+                display: block;
+                width: 1rem;
+                height: .83rem;
+                cursor: pointer;
+            }
+        }
+        &__checkbox:checked + &__list{
+            display: block;
+            position: absolute;
+            left: -5rem;
+            z-index: 100;
+            padding: 0 1rem;
+            background-color: white;
+            border: 1px solid $card-color;
+            &>*{
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+                border-bottom: 1px solid $card-color;
+            }
+        }
+    }
+}
