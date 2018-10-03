@@ -27,11 +27,8 @@
         }
         &__item {
             display: inline-block;
-            &:nth-child(1) {
+            &:not(:last-child) {
                 margin-right: 1.75rem;
-            }
-            &:nth-child(2) {
-                margin-right: 1.63rem;
             }
         }
         
