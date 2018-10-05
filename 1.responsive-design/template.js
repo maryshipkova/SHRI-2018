@@ -1,6 +1,5 @@
 const DATA = {
-    "events": [
-        {
+    "events": [{
             "type": "info",
             "title": "Еженедельный отчет по расходам ресурсов",
             "source": "Сенсоры потребления",
@@ -8,42 +7,7 @@ const DATA = {
             "description": "Так держать! За последнюю неделю вы потратили на 10% меньше ресурсов, чем неделей ранее.",
             "icon": "stats",
             "data": {
-                "type": "graph",
-                "values": [
-                    {
-                        "electricity": [
-                            ["1536883200", 115],
-                            ["1536969600", 117],
-                            ["1537056000", 117.2],
-                            ["1537142400", 118],
-                            ["1537228800", 120],
-                            ["1537315200", 123],
-                            ["1537401600", 129]
-                        ]
-                    },
-                    {
-                        "water": [
-                            ["1536883200", 40],
-                            ["1536969600", 40.2],
-                            ["1537056000", 40.5],
-                            ["1537142400", 41],
-                            ["1537228800", 41.4],
-                            ["1537315200", 41.9],
-                            ["1537401600", 42.6]
-                        ]
-                    },
-                    {
-                        "gas": [
-                            ["1536883200", 13],
-                            ["1536969600", 13.2],
-                            ["1537056000", 13.5],
-                            ["1537142400", 13.7],
-                            ["1537228800", 14],
-                            ["1537315200", 14.2],
-                            ["1537401600", 14.5]
-                        ]
-                    }
-                ]
+                "image": "RichData.png"
             },
             "size": "l"
         },
@@ -143,7 +107,7 @@ const DATA = {
             "description": "Робопылесос не смог сменить свое местоположение в течение последних 3 минут. Похоже, ему нужна помощь.",
             "icon": "cam",
             "data": {
-                "image": "get_it_from_mocks_:3.jpg"
+                "image": "image.jpg"
             },
             "size": "l"
         },
@@ -159,8 +123,42 @@ const DATA = {
     ]
 }
 
-let container = document.querySelector('#content');
-console.log(container);
-DATA.forEach(card => {
-    
+let container = document.querySelector('#events');
+const template = document.querySelector('#card-template');
+let card = template.content.querySelector('.card'),
+    title = template.content.querySelector('.card__header--title'),
+    source = template.content.querySelector('.card__source'),
+    time = template.content.querySelector('.card__time'),
+    description = template.content.querySelector('.card__description'),
+    icon = template.content.querySelector('.card__header--icon'),
+    data = template.content.querySelector('.card__data');
+
+
+
+
+DATA.events.forEach(event => {
+    ////////////////let card = template.content.querySelector('.card'), +=cardname
+    card.className = `card card__${event.size}`;
+    // console.log(card);
+    icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
+    title.children[0].textContent = event.title;
+    source.children[0].textContent = event.source;
+    time.children[0].textContent = event.time;
+    // if(event.description){
+    //     description.children[0].textContent = event.description;
+    // }else{
+    //     description.children[0].textContent = "";
+    // }
+    if(event.data){
+        console.log(event.data);
+        if(event.data.image){data.innerHTML = `<img class="card__data--image" src="assets/${event.data.image}" alt="${event.data.image}">`;}
+        else{
+            data.innerHTML=`<pre>${event.data}</pre>`;
+        }
+    }else{data.innerHTML = ""}
+
+
+
+    container.appendChild(template.content.cloneNode(true));
+
 });

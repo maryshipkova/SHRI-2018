@@ -1,9 +1,23 @@
 .content{
     height: 100%;
+    width: 64rem;
+
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+
+    &__header{
+        margin-bottom: 2rem;
+    }
+    // overflow: hidden;
+}
+.events{
+    // height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr ; //fit-content
-    grid-auto-rows: repeat( auto-fit, minmax(11.44rem, 1fr) ); 
-    grid-auto-flow: dense;
-    grid-gap: 1.25rem; //TODO
+    grid-template-columns: repeat(6,1fr);//1fr 1fr ; //fit-content
+    // grid-template-rows: repeat( auto-fit, 1fr ); 
+    // grid-auto-rows: $card-s-width;
+    // grid-auto-flow: dense; //row 
+    grid-gap: $grid-gap; //TODO
+    // overflow: none;
 }

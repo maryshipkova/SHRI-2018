@@ -37,37 +37,15 @@
             </nav>
         </header>
 
-        <main class="content" id="content">
-            <div class="card card__s">
-                <div class="card__header">
-                    <div class="card__header--icon">
-                        i
-                    </div>
-                    <div class="card__header--title">
-                        <h2 class="card--heading">Зарядка завершена</h2>
-                    </div>
-                </div>
-
-                <div class="card__source">
-                    <h3 class="card--source-text">Оконный сенсор</h3>
-                </div>
-                <div class="card__time">
-                    <h3 class="card--time-text">16:22, Сегодня</h3>
-                </div>
-                <div class="card__description"> <p class="card--paragraph"> Ура! Устройство «Оконный
-                        сенсор» снова в строю!</p> </div>
-
+        <main class="content">
+            <div class="content__header">
+                <h1 class="heading--primary">
+                        Лента событий
+                </h1>
             </div>
-            <div class="card card__m">
-                <div class="card__icon">
+            <section class="events" id="events">
 
-                </div>
-                <div class="card__title">
-
-                </div>
-                <div class="card__souce"></div>
-
-            </div>
+            </section>
         </main>
 
 
@@ -93,7 +71,31 @@
     </div><!-- grid -->
 
     <template id="card-template">
+        <div class="card">
+            <div class="card__header">
+                <div class="card__header--icon">
+                    <svg class="icon--card">
+                        
+                    </svg>
+                </div>
+                <div class="card__header--title">
+                    <h2 class="card--heading"></h2>
+                </div>
+            </div>
 
+            <div class="card__source">
+                <h3 class="card--source-text"></h3>
+            </div>
+            <div class="card__time">
+                <h3 class="card--time-text"></h3>
+            </div>
+            <div class="card__description">
+                <p class="card--paragraph"></p>
+            </div>
+            <div class="card__data">
+                <!-- <img src="#" alt=""> -->
+            </div>
+        </div>
     </template>
     <script src="template.js"></script>
 </body>
