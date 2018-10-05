@@ -97,8 +97,7 @@ body {
 
 .card--heading {
   font-size: 24px;
-  font-weight: bold;
-  color: #333333; }
+  font-weight: bold; }
 
 .card--source-text, .card--time-text {
   font-size: 18px;
@@ -119,7 +118,7 @@ body {
 .card--data-music {
   font-family: Helvetica;
   font-size: 14px;
-  color: #A1A1A1; }
+  color: rgba(161, 161, 161, 0.84); }
 
 /*deprecated*/
 .section-heading {
@@ -312,6 +311,12 @@ body {
     grid-row-gap: 1.5rem; }
     .card__l .card--time-text {
       text-align: right; }
+  .card__critical {
+    background-color: #DB5341;
+    color: white; }
+  .card__info {
+    background-color: #FAFAFA;
+    color: #333333; }
   .card__header {
     grid-area: header;
     width: 100%;

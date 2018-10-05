@@ -32,8 +32,7 @@
 .card{
     &--heading{
         font-size: 24px;
-        font-weight: bold;
-        color:  $color-dark;  
+        font-weight: bold; 
     }
 
     &--source-text, &--time-text{
@@ -64,7 +63,7 @@
         &-music{
             font-family: Helvetica;
             font-size: 14px;
-            color: $color-music-text;
+            color: rgba($color-music-text, .84);
         }
 
     }
