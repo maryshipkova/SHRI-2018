@@ -139,6 +139,14 @@
         .card--time-text {
             text-align: right;
         }
+
+        .card--paragraph{
+            font-size: 24px;
+        }
+
+        .card__description{
+            margin-right: 1.5rem;
+        }
     }
 
     &__critical {

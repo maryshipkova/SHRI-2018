@@ -330,6 +330,10 @@ body {
       padding: 0 1.25rem 1.25rem 1.25rem; }
     .card__l .card--time-text {
       text-align: right; }
+    .card__l .card--paragraph {
+      font-size: 24px; }
+    .card__l .card__description {
+      margin-right: 1.5rem; }
   .card__critical {
     background-color: #DB5341;
     color: white; }
