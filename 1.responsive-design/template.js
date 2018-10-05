@@ -201,6 +201,8 @@ class TemplateFactory {
             let template = document.importNode(this._template, true);
             // console.log(template.childNodes);
             let card = template.querySelector('.card'),
+                type = template.querySelector('.card__type--top'),
+                info = template.querySelector('.card__type--bottom'),
                 title = template.querySelector('.card__title'),
                 source = template.querySelector('.card__source'),
                 time = template.querySelector('.card__time'),
@@ -208,7 +210,13 @@ class TemplateFactory {
                 icon = template.querySelector('.card__icon'),
                 data = template.querySelector('.card__data');
             ////////////////let card = template.content.querySelector('.card'), +=cardname
-            card.className = `card card__${event.size} card__${event.type}`;
+            // if(event.size ==="s"){
+
+            // }else{
+                
+            // }
+            card.className = `card card__${event.size}`;
+            type.className = `card__type--top card__${event.type}`;
             icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
             title.children[0].textContent = event.title;
             source.children[0].textContent = event.source;
@@ -217,7 +225,7 @@ class TemplateFactory {
             if (event.description) {
                 description.children[0].textContent = event.description;
             } else {
-                this.removeItem(description);
+                this.removeItem(info);
             }
 
             if (event.data) {
