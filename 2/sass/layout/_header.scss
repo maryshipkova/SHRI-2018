@@ -1,0 +1,48 @@
+.header {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.06rem solid #F0F0F0;
+
+    &__logo {
+        margin-right: 1.31rem;
+        margin-left: 2.63rem;
+        .logo {
+            width: 6.75rem;
+            height: auto;
+        }
+    }
+    &__nav {
+        position: relative;
+       
+       
+        &__item {
+            display: inline-block;
+            &:not(:last-child) {
+                margin-right: 1.75rem;
+            }
+        }
+        
+        &__checkbox {
+            display: none;
+        }
+        &__toggle {
+            display: none;
+            
+        }
+        &__checkbox:checked + &__list{
+            display: block;
+            position: absolute;
+            left: -5rem;
+            z-index: 100;
+            padding: 0 1rem;
+            background-color: white;
+            border: 1px solid $card-color;
+            &>*{
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+                border-bottom: 1px solid $card-color;
+            }
+        }
+    }
+}

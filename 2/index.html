@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Яндекс.Дом</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="grid">
+        <header class="header">
+            <div class="header__logo">
+                <img srcset="assets/Logo@1x.png 1x, assets/Logo@2x.png 2x" src="assets/Logo@2x.png" alt="Logo" class="logo">
+            </div>
+            <nav class="header__nav">
+                <label for="header-toggle" class="header__nav__toggle">
+                    <span class="icon--header-nav">&nbsp;</span>
+                </label>
+                <input type="checkbox" class="header__nav__checkbox" id="header-toggle">
+                <ul class="header__nav__list">
+                    <li class="header__nav__item">
+                        <a href="#" class="text--nav-link link-active">События</a>
+                    </li>
+                    <li class="header__nav__item">
+                        <a href="#" class="text--nav-link">Сводка</a>
+                    </li>
+                    <li class="header__nav__item">
+                        <a href="#" class="text--nav-link">Устройства</a>
+                    </li>
+                    <li class="header__nav__item">
+                        <a href="#" class="text--nav-link">Сценарии</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content">
+            <div class="image__wrapper">
+                <div class="image">
+                    <img class="image--img" src="./pic.jpg" alt="">
+                </div>
+            </div>
+            <div class="controls">
+                <div class="controls__zoom">
+                    <span class="controls__zoom--text">Zoom: 1:</span>
+                    <span class="controls__zoom--value">1</span>
+                </div>
+                <div class="controls__brightness">
+                    <span class="controls__brightness--text">Brightness:</span>
+                    <span class="controls__Brightness--value">100%</span>
+                </div>
+            </div>
+        </main>
+
+
+        <footer class="footer">
+            <ul class="footer__list">
+                <li class="footer__item">
+                    <a href="#" class="text--footer">Помощь</a>
+                </li>
+                <li class="footer__item">
+                    <a href="#" class="text--footer">Обратная связь</a>
+                </li>
+                <li class="footer__item">
+                    <a href="#" class="text--footer">Разработчикам</a>
+                </li>
+                <li class="footer__item">
+                    <a href="#" class="text--footer">Условия использования</a>
+                </li>
+                <li class="footer__item">
+                    <a href="#" class="text--footer">&copy; 2001–2017 ООО «Яндекс»</a>
+                </li>
+            </ul>
+        </footer>
+    </div><!-- grid -->
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

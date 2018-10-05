@@ -1,0 +1,204 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+  a:focus {
+    outline: none;
+    border: none; }
+
+button {
+  outline: none;
+  border: none; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  font-family: inherit; }
+
+html {
+  box-sizing: border-box; }
+
+body {
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333333;
+  background-color: #FFFFFF;
+  overflow-x: hidden; }
+
+.heading--primary {
+  font-size: 2.25rem;
+  color: #333333;
+  text-align: left; }
+
+.text--nav-link {
+  font-size: 1rem;
+  line-height: 20px;
+  font-weight: bold;
+  opacity: 0.6; }
+  .text--nav-link:hover, .text--nav-link:active, .text--nav-link:focus {
+    opacity: 1; }
+
+.link-active {
+  opacity: 1; }
+
+.text--footer {
+  font-size: .75rem;
+  color: #858585;
+  letter-spacing: 0.01px; }
+
+.text--bold {
+  font-weight: bold; }
+
+.card--heading {
+  font-size: 24px;
+  font-weight: bold; }
+
+.card--source-text, .card--time-text {
+  font-size: 18px;
+  font-weight: normal; }
+
+.card--paragraph {
+  font-size: 20px;
+  text-align: left; }
+
+.card--data-climate {
+  font-size: 18px;
+  color: black; }
+
+.card--data-paragraph {
+  font-size: 20px;
+  color: black; }
+
+.card--data-music {
+  font-family: Helvetica;
+  font-size: 14px;
+  color: rgba(161, 161, 161, 0.84); }
+
+.grid {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: minmax(3.25rem, 5.75rem) 1fr minmax(3rem, 4rem);
+  grid-template-columns: 1fr 64rem 1fr;
+  grid-template-areas: "header header header"  ". content ." "footer footer footer";
+  grid-row-gap: 1.25rem; }
+  .grid .header {
+    grid-area: header; }
+  .grid .content {
+    grid-area: content; }
+  .grid .footer {
+    grid-area: footer; }
+
+.header {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  border-bottom: 0.06rem solid #F0F0F0; }
+  .header__logo {
+    margin-right: 1.31rem;
+    margin-left: 2.63rem; }
+    .header__logo .logo {
+      width: 6.75rem;
+      height: auto; }
+  .header__nav {
+    position: relative; }
+    .header__nav__item {
+      display: inline-block; }
+      .header__nav__item:not(:last-child) {
+        margin-right: 1.75rem; }
+    .header__nav__checkbox {
+      display: none; }
+    .header__nav__toggle {
+      display: none; }
+    .header__nav__checkbox:checked + .header__nav__list {
+      display: block;
+      position: absolute;
+      left: -5rem;
+      z-index: 100;
+      padding: 0 1rem;
+      background-color: white;
+      border: 1px solid #FAFAFA; }
+      .header__nav__checkbox:checked + .header__nav__list > * {
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        border-bottom: 1px solid #FAFAFA; }
+
+.content {
+  display: grid;
+  gris-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  background-color: #FAFAFA;
+  border-radius: 1.25rem;
+  padding: 1.25rem; }
+  .content .image {
+    width: 64rem; }
+    .content .image__wrapper {
+      width: 40rem;
+      overflow: hidden;
+      margin: auto; }
+    .content .image--img {
+      width: 100%; }
+  .content .controls {
+    display: grid;
+    padding: 1.25rem; }
+
+.footer {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #F0F0F0; }
+  .footer__list {
+    width: 100%;
+    display: flex;
+    padding-left: 2.5rem; }
+  .footer__item {
+    display: inline-block;
+    margin-right: 1rem; }
+    .footer__item:last-child {
+      margin-left: auto;
+      margin-right: 2.06rem; }
