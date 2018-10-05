@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Яндекс.Дом</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="grid">
         <header class="header">
@@ -19,44 +21,81 @@
                 </label>
                 <input type="checkbox" class="header__nav__checkbox" id="header-toggle">
                 <ul class="header__nav__list">
-                        <li class="header__nav__item">
-                                <a href="#" class="header-nav-link link-active">События</a>
-                            </li>
                     <li class="header__nav__item">
-                        <a href="#" class="header-nav-link">Сводка</a>
+                        <a href="#" class="text--nav-link link-active">События</a>
                     </li>
                     <li class="header__nav__item">
-                        <a href="#" class="header-nav-link">Устройства</a>
+                        <a href="#" class="text--nav-link">Сводка</a>
                     </li>
                     <li class="header__nav__item">
-                        <a href="#" class="header-nav-link">Сценарии</a>
+                        <a href="#" class="text--nav-link">Устройства</a>
+                    </li>
+                    <li class="header__nav__item">
+                        <a href="#" class="text--nav-link">Сценарии</a>
                     </li>
                 </ul>
             </nav>
         </header>
 
-       <main></main> 
-       
-       
+        <main class="content" id="content">
+            <div class="card card__s">
+                <div class="card__header">
+                    <div class="card__header--icon">
+                        i
+                    </div>
+                    <div class="card__header--title">
+                        <h2 class="card--heading">Зарядка завершена</h2>
+                    </div>
+                </div>
+
+                <div class="card__source">
+                    <h3 class="card--source-text">Оконный сенсор</h3>
+                </div>
+                <div class="card__time">
+                    <h3 class="card--time-text">16:22, Сегодня</h3>
+                </div>
+                <div class="card__description"> <p class="card--paragraph"> Ура! Устройство «Оконный
+                        сенсор» снова в строю!</p> </div>
+
+            </div>
+            <div class="card card__m">
+                <div class="card__icon">
+
+                </div>
+                <div class="card__title">
+
+                </div>
+                <div class="card__souce"></div>
+
+            </div>
+        </main>
+
+
         <footer class="footer">
             <ul class="footer__list">
                 <li class="footer__item">
-                    <a href="#" class="footer-text">Помощь</a>
+                    <a href="#" class="text--footer">Помощь</a>
                 </li>
                 <li class="footer__item">
-                    <a href="#" class="footer-text">Обратная связь</a>
+                    <a href="#" class="text--footer">Обратная связь</a>
                 </li>
                 <li class="footer__item">
-                    <a href="#" class="footer-text">Разработчикам</a>
+                    <a href="#" class="text--footer">Разработчикам</a>
                 </li>
                 <li class="footer__item">
-                    <a href="#" class="footer-text">Условия использования</a>
+                    <a href="#" class="text--footer">Условия использования</a>
                 </li>
                 <li class="footer__item">
-                    <p class="footer-text">&copy; 2001–2017 ООО «Яндекс»</p>
+                    <a href="#" class="text--footer">&copy; 2001–2017 ООО «Яндекс»</a>
                 </li>
             </ul>
         </footer>
     </div><!-- grid -->
+
+    <template id="card-template">
+
+    </template>
+    <script src="template.js"></script>
 </body>
+
 </html>

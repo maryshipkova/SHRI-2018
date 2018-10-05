@@ -1,0 +1,77 @@
+.card{
+    display: block;
+    background-color: $card-color;
+
+    font-size: 0.88rem;
+    border-radius: 1.25rem;
+    padding: 1em 1.07em;
+    cursor: pointer;
+    transition: all .2s;
+    display: grid;
+
+    &__s{
+        min-height: 10.69rem; //  min-height?
+        max-height: 15.44rem;
+        min-width: 20.44rem;
+        padding: .86rem 1.25rem;
+        padding-bottom: 0;
+        padding-right: 1.88rem;
+        grid-template-areas:"header" 
+                        "source"
+                        "time"
+                        "description";
+
+
+        grid-template-rows:  repeat(3,max-content) minmax(0rem, min-content) ;
+        grid-template-columns: 1fr;
+
+        grid-row-gap: 1.25rem;
+
+        align-content: center;
+    }
+    &__m{
+        padding: .7 1.25rem;
+        height: 13.75rem; //  min-height?
+        width: 31.78rem;
+
+        grid-row-gap: 1.33rem;
+    }
+    &__l{
+        padding:  1.25rem;
+        height: 42.06rem; //  min-height?
+        width: 36.06rem;
+
+        grid-row-gap: 1.5rem;
+    }
+    
+    &__header{
+        grid-area: header;
+
+        width: 100%;
+        display: flex;
+
+        &--icon{
+            margin-right: 1.09rem;
+        }
+    }
+
+    &__source{
+        grid-area: source;
+    }
+    &__time{
+        grid-area: time;
+    }
+
+    &__description{
+        grid-area: description;
+        // margin-bottom: 1.25rem;
+    }
+
+    &:hover{
+        background-color: $bg-color;
+        box-shadow: 0 2px 6px 0 rgba(197,186,186,0.50);
+    }
+
+
+
+}

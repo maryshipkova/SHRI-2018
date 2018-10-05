@@ -5,19 +5,17 @@
     grid-template-rows: minmax(3.25rem,5.75rem) 1fr minmax(3rem,4rem);
     grid-template-columns: 1fr 64rem 1fr ;
     grid-template-areas:"header header header" 
-                        ". main ."
+                        ". content ."
                         "footer footer footer";
 
     .header{
         grid-area: header;
     }
-    .main{
-        grid-area: main; 
+    .content{
+        grid-area: content; 
     }
 
-    // .side{
 
-    // }
     .footer{
         grid-area: footer; 
     }

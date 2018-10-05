@@ -45,17 +45,15 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
-button{
-	outline: none;
-    border: none;
-}
-
 a{
 	text-decoration: none;
 	color: inherit;
 	&:focus{
-		outline: none; 
+		outline: none;
 		border: none;
 	}
+}
+button{
+	outline: none;
+    border: none;
 }

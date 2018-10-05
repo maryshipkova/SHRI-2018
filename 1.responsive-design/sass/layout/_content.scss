@@ -1,0 +1,9 @@
+.content{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr ; //fit-content
+    grid-auto-rows: repeat( auto-fit, minmax(11.44rem, 1fr) ); 
+    grid-auto-flow: dense;
+    grid-gap: 1.25rem; //TODO
+}
