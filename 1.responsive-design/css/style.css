@@ -260,7 +260,7 @@ body {
   background-color: #FAFAFA;
   font-size: 0.88rem;
   border-radius: 1.25rem;
-  padding: 1em 1.07em;
+  padding: 1rem 1.25rem;
   cursor: pointer;
   transition: all .2s;
   width: 100%;
@@ -268,10 +268,14 @@ body {
   .card__s {
     grid-column-start: span 2;
     grid-row-start: span 1;
+    padding: .86rem 1.25rem 0 1.31rem;
     display: grid;
-    grid-template-areas: "header"  "source" "time";
+    grid-template-areas: "header"  "source" "time" "description";
     grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
     grid-row-gap: 1.25rem; }
+    .card__s .card__description {
+      padding-bottom: 1.25rem; }
   .card__m {
     grid-column-start: span 3;
     grid-row-start: span 1;
@@ -297,7 +301,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center; }
-    .card__header--icon {
+    .card__header .card__icon {
       margin-right: 1.09rem;
       width: 3rem;
       height: 3rem; }

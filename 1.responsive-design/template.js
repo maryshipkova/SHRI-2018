@@ -124,41 +124,50 @@ const DATA = {
 }
 
 let container = document.querySelector('#events');
-const template = document.querySelector('#card-template');
-let card = template.content.querySelector('.card'),
-    title = template.content.querySelector('.card__header--title'),
-    source = template.content.querySelector('.card__source'),
-    time = template.content.querySelector('.card__time'),
-    description = template.content.querySelector('.card__description'),
-    icon = template.content.querySelector('.card__header--icon'),
-    data = template.content.querySelector('.card__data');
+const cardTemplate = document.querySelector('#card-template').content;
+
 
 
 
 
 DATA.events.forEach(event => {
+    //Create a new node, based on the template:
+    let template = document.importNode(cardTemplate, true);
+    console.log(template.childNodes);
+    let card = template.querySelector('.card'),
+    title = template.querySelector('.card__title'),
+    source = template.querySelector('.card__source'),
+    time = template.querySelector('.card__time'),
+    description = template.querySelector('.card__description'),
+    icon = template.querySelector('.card__icon'),
+    data = template.querySelector('.card__data');
+
     ////////////////let card = template.content.querySelector('.card'), +=cardname
     card.className = `card card__${event.size}`;
-    // console.log(card);
     icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
     title.children[0].textContent = event.title;
     source.children[0].textContent = event.source;
     time.children[0].textContent = event.time;
-    // if(event.description){
-    //     description.children[0].textContent = event.description;
-    // }else{
-    //     description.children[0].textContent = "";
-    // }
+
+    if(event.description){
+        description.children[0].textContent = event.description;
+    }else{
+        // console.log(data.parentElement);
+        description.parentElement.removeChild(description);
+    }
     if(event.data){
-        console.log(event.data);
+        // console.log(event.data);
         if(event.data.image){data.innerHTML = `<img class="card__data--image" src="assets/${event.data.image}" alt="${event.data.image}">`;}
         else{
             data.innerHTML=`<pre>${event.data}</pre>`;
         }
-    }else{data.innerHTML = ""}
+    }else{
+        // console.log(data.parentElement);
+        data.parentElement.removeChild(data);
+    }
 
 
 
-    container.appendChild(template.content.cloneNode(true));
+    container.appendChild(template.cloneNode(true));
 
 });
