@@ -92,6 +92,9 @@ body {
   color: #858585;
   letter-spacing: 0.01px; }
 
+.text--bold {
+  font-weight: bold; }
+
 .card--heading {
   font-size: 24px;
   font-weight: bold;
@@ -108,14 +111,15 @@ body {
 .card--data-climate {
   font-size: 18px;
   color: black; }
-  .card--data-climate--bold {
-    font-weight: bold; }
 
 .card--data-paragraph {
   font-size: 20px;
   color: black; }
-  .card--data-paragraph--bold {
-    font-weight: bold; }
+
+.card--data-music {
+  font-family: Helvetica;
+  font-size: 14px;
+  color: #A1A1A1; }
 
 /*deprecated*/
 .section-heading {
@@ -303,7 +307,7 @@ body {
     grid-row-start: span 3;
     display: grid;
     grid-template-areas: "header header"  "source time" "description description" "data data";
-    grid-template-rows: repeat(4, max-content);
+    grid-template-rows: repeat(3, max-content) minmax(max-content, 1fr);
     grid-template-columns: 1fr 1fr;
     grid-row-gap: 1.5rem; }
     .card__l .card--time-text {
@@ -314,9 +318,7 @@ body {
     display: flex;
     align-items: center; }
     .card__header .card__icon {
-      margin-right: 1.21rem;
-      width: 3rem;
-      height: 3rem; }
+      margin-right: 1.21rem; }
   .card__source {
     grid-area: source; }
   .card__time {
@@ -324,15 +326,66 @@ body {
   .card__description {
     grid-area: description; }
   .card__data {
-    grid-area: data; }
+    grid-area: data;
+    align-self: end; }
     .card__data__image--img {
-      width: 100%;
-      height: 100%; }
+      width: 100%; }
     .card__data__climate {
       display: flex; }
     .card__data__temperature {
       margin-right: 3.25rem; }
     .card__data__buttons {
       display: flex; }
+      .card__data__buttons--btn {
+        width: 8.25rem;
+        height: 3.38rem;
+        background: #E5E5E5;
+        border-radius: 8px; }
+        .card__data__buttons--btn:first-child {
+          background: #FFD93E;
+          margin-right: 1.13rem; }
+        .card__data__buttons--btn:hover {
+          background: #FFD93E;
+          cursor: pointer; }
+    .card__data__albumcover {
+      margin-right: 1rem; }
+      .card__data__albumcover--img {
+        width: 3.31rem;
+        border-radius: 20%; }
     .card__data__music {
-      display: flex; }
+      width: 100%; }
+      .card__data__music .music__header, .card__data__music .music__player, .card__data__music .music__track, .card__data__music .music__icons {
+        display: flex;
+        align-items: center; }
+      .card__data__music .music__header {
+        margin-bottom: 1.25rem; }
+      .card__data__music .music--img {
+        width: 3.31rem;
+        border-radius: 20%; }
+      .card__data__music .music__main {
+        width: 100%; }
+        .card__data__music .music__main > .card__data__artist:first-child {
+          margin-bottom: 1rem; }
+      .card__data__music .music__track {
+        width: 100%; }
+        .card__data__music .music__track--range {
+          flex: 1 1 100%; }
+      .card__data__music .music__player {
+        width: 100%; }
+        .card__data__music .music__player--range {
+          width: 100%;
+          flex: 1 1 100%; }
+      .card__data__music .music__icons--item:first-child {
+        margin-right: 1.69rem; }
+
+.icon--card {
+  width: 3rem;
+  height: 3rem; }
+
+.icon--music {
+  display: block;
+  width: 53px;
+  height: 52px; }
+
+.icon--rotated {
+  transform: rotate(180deg); }

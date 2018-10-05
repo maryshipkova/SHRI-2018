@@ -1,7 +1,16 @@
 .icon{
     
     &--card{
-        // width: 3rem;
-        // height: 3rem;
+        width: 3rem;
+        height: 3rem;
+    }
+
+    &--music{
+        display: block;
+        width: 53px;
+        height: 52px;
+    }
+    &--rotated{
+        transform: rotate(180deg);
     }
 }

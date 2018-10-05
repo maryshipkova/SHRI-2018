@@ -14,10 +14,7 @@
     // height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(6,1fr);//1fr 1fr ; //fit-content
-    // grid-template-rows: repeat( auto-fit, 1fr ); 
-    // grid-auto-rows: $card-s-width;
-    // grid-auto-flow: dense; //row 
+    grid-template-columns: repeat(6,1fr);
     grid-gap: $grid-gap; //TODO
-    // overflow: none;
+
 }
