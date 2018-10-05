@@ -124,50 +124,83 @@ const DATA = {
 }
 
 let container = document.querySelector('#events');
-const cardTemplate = document.querySelector('#card-template').content;
+const cardTemplate = document.querySelector('#card-template');
+// const properties = {
+//     card: 
+//     title : '.card__title',
+//     source: 
+// }
 
-
-
-
-
-DATA.events.forEach(event => {
-    //Create a new node, based on the template:
-    let template = document.importNode(cardTemplate, true);
-    console.log(template.childNodes);
-    let card = template.querySelector('.card'),
-    title = template.querySelector('.card__title'),
-    source = template.querySelector('.card__source'),
-    time = template.querySelector('.card__time'),
-    description = template.querySelector('.card__description'),
-    icon = template.querySelector('.card__icon'),
-    data = template.querySelector('.card__data');
-
-    ////////////////let card = template.content.querySelector('.card'), +=cardname
-    card.className = `card card__${event.size}`;
-    icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
-    title.children[0].textContent = event.title;
-    source.children[0].textContent = event.source;
-    time.children[0].textContent = event.time;
-
-    if(event.description){
-        description.children[0].textContent = event.description;
-    }else{
-        // console.log(data.parentElement);
-        description.parentElement.removeChild(description);
+class TemplateFactory{
+    constructor(template){
+        this._template = template.content;
+        // this._properties = properties;
     }
-    if(event.data){
-        // console.log(event.data);
-        if(event.data.image){data.innerHTML = `<img class="card__data--image" src="assets/${event.data.image}" alt="${event.data.image}">`;}
-        else{
-            data.innerHTML=`<pre>${event.data}</pre>`;
+
+    removeItem(item){
+        item.parentElement.removeChild(item);
+    }
+    renderEventData(event, dataNode){
+
+        if(event.data.image){
+            let image = dataNode.querySelector('.card__data__image');
+            image.innerHTML = `<img class="card__data__image--img" src="assets/${event.data.image}" alt="${event.data.image}">`;
         }
-    }else{
-        // console.log(data.parentElement);
-        data.parentElement.removeChild(data);
+        else if(event.data.temperature){
+            let temperature = dataNode.querySelector('.card__data__temperature');
+            let humidity = dataNode.querySelector('.card__data__humidity');
+            // dataNode.innerHTML=`<pre>${event.data}</pre>`;
+         
+            temperature.children[0].innerHTML = `Температура: <span class="card--data-climate--bold">${event.data.temperature} С</span>`;
+            humidity.children[0].innerHTML =  `Влажность: <span class="card--data-climate--bold">${event.data.humidity}%</span>`;
+            console.log(temperature.children[0]);
+        }
+        else if(event.data.track){
+            let track = dataNode.querySelector('.card__data__track');
+            // dataNode.innerHTML=`<pre>${event.data}</pre>`;
+        }
+        else if(event.data.buttons){
+            let buttons = dataNode.querySelector('.card__data__buttons');
+            // dataNode.innerHTML=`<pre>${event.data}</pre>`;
+        }
     }
+    renderContent(dataToRender){
+        dataToRender.forEach(event => {
+            //Create a new node, based on the template:
+            let template = document.importNode(this._template, true);
+            // console.log(template.childNodes);
+            let card = template.querySelector('.card'),
+            title = template.querySelector('.card__title'),
+            source = template.querySelector('.card__source'),
+            time = template.querySelector('.card__time'),
+            description = template.querySelector('.card__description'),
+            icon = template.querySelector('.card__icon'),
+            data = template.querySelector('.card__data');
+            ////////////////let card = template.content.querySelector('.card'), +=cardname
+            card.className = `card card__${event.size}`;
+            icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
+            title.children[0].textContent = event.title;
+            source.children[0].textContent = event.source;
+            time.children[0].textContent = event.time;
+        
+            if(event.description){
+                description.children[0].textContent = event.description;
+            }else{
+                this.removeItem(description);
+            }
 
+            if(event.data){
+                this.renderEventData(event, data);
+                // console.log(event.data);        
+            }else{
+                this.removeItem(data);
+            }
+            container.appendChild(template.cloneNode(true));
+        
+        });
+    }
+}
 
+let cardTemplateFactory = new TemplateFactory(cardTemplate)
 
-    container.appendChild(template.cloneNode(true));
-
-});
+cardTemplateFactory.renderContent(DATA.events);

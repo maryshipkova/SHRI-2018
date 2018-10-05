@@ -105,6 +105,18 @@ body {
   font-size: 20px;
   text-align: left; }
 
+.card--data-climate {
+  font-size: 18px;
+  color: black; }
+  .card--data-climate--bold {
+    font-weight: bold; }
+
+.card--data-paragraph {
+  font-size: 20px;
+  color: black; }
+  .card--data-paragraph--bold {
+    font-weight: bold; }
+
 /*deprecated*/
 .section-heading {
   margin-bottom: 1.25rem; }
@@ -302,7 +314,7 @@ body {
     display: flex;
     align-items: center; }
     .card__header .card__icon {
-      margin-right: 1.09rem;
+      margin-right: 1.21rem;
       width: 3rem;
       height: 3rem; }
   .card__source {
@@ -313,6 +325,14 @@ body {
     grid-area: description; }
   .card__data {
     grid-area: data; }
-    .card__data--image {
+    .card__data__image--img {
       width: 100%;
       height: 100%; }
+    .card__data__climate {
+      display: flex; }
+    .card__data__temperature {
+      margin-right: 3.25rem; }
+    .card__data__buttons {
+      display: flex; }
+    .card__data__music {
+      display: flex; }
