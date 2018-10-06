@@ -20,4 +20,7 @@
         }
     }
 
+    @include responsive(phone) {
+        display: none;
+    }
 }

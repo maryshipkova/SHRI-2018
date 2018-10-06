@@ -8,8 +8,6 @@
     transition: all .2s;
     overflow: hidden;
 
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -207,14 +205,11 @@
         grid-area: data;
         align-self: end;
         z-index: 2;
-
-        // margin-bottom: $grid-gap;
         &__image {
             &--img {
                 width: 100%;
                 border-radius: $grid-gap;
-                // height: 100%;
-            }
+            }   
             &__settings{
                 display: none;
                 @include responsive(phone) {

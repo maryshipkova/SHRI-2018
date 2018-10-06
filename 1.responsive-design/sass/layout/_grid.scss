@@ -9,6 +9,7 @@
                         "footer footer footer";
 
     @include responsive(phone) {
+        width: 100%;
         grid-template-rows: minmax(3.25rem,5.75rem) max-content minmax(3rem,4rem); //4rem 8.75rem
         grid-template-columns: $grid-gap 1fr $grid-gap ;
     }
