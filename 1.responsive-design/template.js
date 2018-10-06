@@ -125,35 +125,92 @@ const DATA = {
 
 let container = document.querySelector('#events');
 const cardTemplate = document.querySelector('#card-template');
-// const properties = {
-//     card: 
-//     title : '.card__title',
-//     source: 
-// }
+const PROPERTIES = [{
+        name: 'size',
+        selector: '.card',
+        neededChild: 0,
+        className: `card card__$meow`
+    },
+    {
+        name: 'type',
+        selector: '.card__type--top',
+        neededChild: 0,
+        className: `card__type--top card__$meow`
+    },
+    {
+        name: 'info',
+        selector: '.card__type--bottom',
+        neededChild: 1
+    },
+    {
+        name: 'title',
+        selector: '.card__title',
+        neededChild: 1
+    },
+    {
+        name: 'source',
+        selector: '.card__source',
+        neededChild: 1
+    },
+    {
+        name: 'time',
+        selector: '.card__time',
+        neededChild: 1
+    },
+    {
+        name: 'description',
+        selector: '.card__description',
+        neededChild: 0,
+        optional: 1,
+        innerHtml: `<p class="card--paragraph">$meow</p>`
+    },
+    {
+        name: 'icon',
+        selector: '.card__icon',
+        neededChild: 1,
+        innerHtml: `<use xlink:href="assets/$meow.svg#Events"></use>`
+    },
+    {
+        name: 'data',
+        selector: '.card__data',
+        neededChild: 1,
+        optional: 1,
+    },
+]
 
 class TemplateFactory {
-    constructor(template) {
+    constructor(template, properties) {
         this._template = template.content;
-        // this._properties = properties;
+        this._properties = JSON.parse(JSON.stringify(properties));
+        this._stringToReplace = '$meow';
+
+    }
+    _initTemplate() {
+        let template = document.importNode(this._template, true);
+        this._properties.forEach((prop) => {
+            prop.element = template.querySelector(prop.selector);
+        })
+        return template;
     }
 
-    removeItem(item) {
+    _removeItem(item) {
+        console.log(item);
         item.parentElement.removeChild(item);
     }
     renderEventData(event, dataNode) {
+
         let image = dataNode.querySelector('.card__data__image');
         let music = dataNode.querySelector('.card__data__music');
         let climate = dataNode.querySelector('.card__data__climate');
         let buttons = dataNode.querySelector('.card__data__buttons');
+
         if (event.data.image) {
             image.children[0].src = `assets/${event.data.image}`;
 
         } else {
-            this.removeItem(image.parentElement);
+            this._removeItem(image.parentElement);
         }
-
         if (event.data.temperature) {
-
             let temperature = dataNode.querySelector('.card__data__temperature');
             let humidity = dataNode.querySelector('.card__data__humidity');
 
@@ -161,21 +218,21 @@ class TemplateFactory {
             humidity.children[0].innerHTML = `Влажность: <span class="card--data-climate text--bold">${event.data.humidity}%</span>`;
 
         } else {
-            this.removeItem(climate);
+            this._removeItem(climate);
         }
+
         if (event.data.track) {
             let albumcover = dataNode.querySelector('.card__data__albumcover'),
                 artist = dataNode.querySelector('.card__data__artist'),
                 trackLength = dataNode.querySelector('.card__data__track--length'),
                 volume = dataNode.querySelector('.card__data__volume');
-            // console.log(event.data);
             albumcover.children[0].src = event.data.albumcover;
             artist.children[0].textContent = `${event.data.artist} - ${event.data.track.name}`;
             trackLength.children[0].textContent = event.data.track.length;
             volume.children[0].textContent = event.data.volume;
 
         } else {
-            this.removeItem(music);
+            this._removeItem(music);
         }
         if (event.data.buttons) {
 
@@ -189,51 +246,71 @@ class TemplateFactory {
             });
 
         } else {
-            this.removeItem(buttons);
+            this._removeItem(buttons);
         }
     }
     renderContent(dataToRender) {
         dataToRender.forEach(event => {
 
-            //Create a new node, based on the template:
-            let template = document.importNode(this._template, true);
+            let template = this._initTemplate();
+            this._properties.forEach((prop) => {
+                if (prop.name != 'data') {
+                    let element = prop.neededChild ? prop.element.children[0] : prop.element,
+                        inputContent = prop.innerHtml ? prop.innerHtml.replace(this._stringToReplace, event[prop.name]) : event[prop.name];
+
+                    if (prop.className) {
+                        element.className = prop.className.replace(this._stringToReplace, event[prop.name])
+                    } else if (prop.optional) {
+                        if (event[prop.name]) {
+                            element.innerHTML = inputContent;
+                        } else {
+                            this._removeItem(prop.element);
+                        }
+                    } else {
+                        element.innerHTML = inputContent;
+                    }
+
+                }else{
+                    if (event.data) {
+                        this.renderEventData(event, prop.element);    
+                    } else {
+                        this._removeItem(prop.element);
+                    }
+                }
+
+            });
             // console.log(template.childNodes);
-            let card = template.querySelector('.card'),
-                type = template.querySelector('.card__type--top'),
-                info = template.querySelector('.card__type--bottom'),
-                title = template.querySelector('.card__title'),
-                source = template.querySelector('.card__source'),
-                time = template.querySelector('.card__time'),
-                description = template.querySelector('.card__description'),
-                icon = template.querySelector('.card__icon'),
-                data = template.querySelector('.card__data');
-                
-            card.className = `card card__${event.size}`;
-            type.className = `card__type--top card__${event.type}`;
-            icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
+            // let card = template.querySelector('.card'),
+            //     type = template.querySelector('.card__type--top'),
+            //     info = template.querySelector('.card__type--bottom'),
+            //     title = template.querySelector('.card__title'),
+            //     source = template.querySelector('.card__source'),
+            //     time = template.querySelector('.card__time'),
+            //     description = template.querySelector('.card__description'),
+            //     icon = template.querySelector('.card__icon'),
+            //     data = template.querySelector('.card__data');
 
-            title.children[0].textContent = event.title;
-            source.children[0].textContent = event.source;
-            time.children[0].textContent = event.time;
 
-            if (event.description) {
-                description.children[0].textContent = event.description;
-            } else {
-                this.removeItem(info);
-            }
 
-            if (event.data) {
-                this.renderEventData(event, data);
-                // console.log(event.data);        
-            } else {
-                this.removeItem(data);
-            }
+            // card.className = `card card__${event.size}`;
+            // type.className = `card__type--top card__${event.type}`;
+            // icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
+
+            // title.children[0].textContent = event.title;
+            // source.children[0].textContent = event.source;
+            // time.children[0].textContent = event.time;
+
+            // if (event.description) {
+            //     description.children[0].textContent = event.description;
+            // } else {
+            //     this.removeItem(info);
+            // }
             container.appendChild(template.cloneNode(true));
-
         });
+        
     }
 }
 
-let cardTemplateFactory = new TemplateFactory(cardTemplate)
+let cardTemplateFactory = new TemplateFactory(cardTemplate, PROPERTIES)
 
 cardTemplateFactory.renderContent(DATA.events);
