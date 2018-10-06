@@ -146,9 +146,7 @@ class TemplateFactory {
         let climate = dataNode.querySelector('.card__data__climate');
         let buttons = dataNode.querySelector('.card__data__buttons');
         if (event.data.image) {
-
-
-            image.innerHTML = `<img class="card__data__image--img" src="assets/${event.data.image}" alt="${event.data.image}">`;
+            image.children[0].src = `assets/${event.data.image}`;
 
         } else {
             this.removeItem(image);

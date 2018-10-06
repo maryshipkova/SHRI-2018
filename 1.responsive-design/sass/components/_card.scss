@@ -31,7 +31,7 @@
         }
 
         &--bottom {
-            flex: 1 0 ;
+            flex: 1 0;
             // // grid-row: 2;
             // grid-column: 1/-1;
             grid-area: info;
@@ -41,13 +41,11 @@
                 "description description"
                 "data data";
             position: relative;
-           
+
         }
     }
 
     &__s {
-        grid-column-start: span 2;
-        grid-row-start: span 1;
 
         .card__type--top,
         .card__type--bottom {
@@ -57,9 +55,14 @@
 
         .card__type--top {
             padding: .86rem 1.25rem 1.25rem 1.31rem;
-            grid-template-areas: "header"
-                "source"
-                "time";
+            grid-template-areas: "header header"
+                "source source"
+                "time time";
+
+            @include responsive(phone) {
+                grid-template-areas: "header header"
+                    "source time";
+            }
         }
 
         .card__type--bottom {
@@ -87,9 +90,6 @@
 
 
     &__m {
-        // padding:  1.25rem;
-        grid-column-start: span 3;
-        grid-row-start: span 1;
 
         .card__type--top,
         .card__type--bottom {
@@ -115,8 +115,7 @@
     }
 
     &__l {
-        grid-column-start: span 4;
-        grid-row-start: span 3;
+
 
         // grid-template-rows:  repeat(3,max-content) minmax(max-content, 1fr);
         // grid-template-columns: 1fr 1fr;
@@ -133,38 +132,37 @@
         }
 
         .card__type--bottom {
-            padding:  0 $grid-gap $grid-gap $grid-gap;
+            padding: 0 $grid-gap $grid-gap $grid-gap;
         }
 
         .card--time-text {
             text-align: right;
         }
 
-        .card--paragraph{
-            font-size: 24px;
-        }
-
-        .card__description{
+        .card__description {
             margin-right: 1.5rem;
+            color: $color-dark;
         }
     }
 
     &__critical {
         background-color: $card-critical-color;
         color: white;
+
         // padding-bottom: $grid-gap;
-        &::after{
+        &::after {
             content: "";
             display: block;
             height: .0005rem;
         }
-        &~.card__type--bottom{
+
+        &~.card__type--bottom {
             &::before {
                 content: "";
                 display: block;
-                height: 1rem;
+                height: 1.25rem;
                 width: 100%;
-                background-color :$card-color;
+                background-color: $card-color;
                 border-top-left-radius: $grid-gap;
                 border-top-right-radius: $grid-gap;
                 position: absolute;
@@ -176,7 +174,7 @@
     &__info {
         background-color: $card-color;
         color: $color-dark;
-        border-radius: $grid-gap;
+
     }
 
     &__header {
@@ -200,6 +198,7 @@
 
     &__description {
         grid-area: description;
+        z-index: 2;
         // margin-bottom: 1.25rem;
         // background-color: $card-color;
     }
@@ -207,12 +206,22 @@
     &__data {
         grid-area: data;
         align-self: end;
+        z-index: 2;
 
         // margin-bottom: $grid-gap;
         &__image {
             &--img {
                 width: 100%;
+                border-radius: $grid-gap;
                 // height: 100%;
+            }
+            &__settings{
+                display: none;
+                @include responsive(phone) {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: .88rem;
+                }
             }
         }
 
@@ -228,11 +237,21 @@
         &__buttons {
             display: flex;
 
+            @include responsive(phone) {
+
+                justify-content: space-between;
+            }
+
             &--btn {
                 width: 8.25rem;
                 height: 3.38rem;
                 background: $button-color;
                 border-radius: 8px;
+
+                @include responsive(phone) {
+                    height: 2.25rem;
+
+                }
 
                 &:first-child {
                     background: $button-active-color;
@@ -317,11 +336,15 @@
 
     }
 
-    // &:hover{
-    //     background-color: $bg-color;
-    //     box-shadow: 0 2px 6px 0 rgba(197,186,186,0.50);
-    // }
+    &:hover,
+        {
+        background-color: #F3F3F3;
+        box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.50);
 
-
+        .card__info,
+        .card__info::before {
+            background-color: #F3F3F3;
+        }
+    }
 
 }

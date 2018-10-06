@@ -72,9 +72,12 @@ body {
   overflow-x: hidden; }
 
 .heading--primary {
-  font-size: 2.25rem;
+  font-size: 36px;
   color: #333333;
   text-align: left; }
+  @media only screen and (max-width: 37.5em) {
+    .heading--primary {
+      font-size: 24px; } }
 
 .text--nav-link {
   font-size: 1rem;
@@ -98,84 +101,58 @@ body {
 .card--heading {
   font-size: 24px;
   font-weight: bold; }
+  @media only screen and (max-width: 37.5em) {
+    .card--heading {
+      font-size: 14px; } }
 
 .card--source-text, .card--time-text {
   font-size: 18px;
   font-weight: normal; }
+  @media only screen and (max-width: 37.5em) {
+    .card--source-text, .card--time-text {
+      font-size: 12px; } }
+
+.card--image-settings {
+  font-size: 12px; }
 
 .card--paragraph {
   font-size: 20px;
-  text-align: left; }
+  color: black; }
+  @media only screen and (max-width: 37.5em) {
+    .card--paragraph {
+      font-size: 18px; } }
+
+.card__l .card--paragraph {
+  font-size: 24px;
+  color: #333333; }
+  @media only screen and (max-width: 37.5em) {
+    .card__l .card--paragraph {
+      font-size: 18px; } }
 
 .card--data-climate {
   font-size: 18px;
   color: black; }
+  @media only screen and (max-width: 37.5em) {
+    .card--data-climate {
+      font-size: 14px; } }
 
 .card--data-paragraph {
   font-size: 20px;
   color: black; }
 
+.card--data-music-title {
+  font-size: 20px;
+  color: black; }
+  @media only screen and (max-width: 37.5em) {
+    .card--data-music-title {
+      font-size: 18px; } }
+
 .card--data-music {
-  font-family: Helvetica;
   font-size: 14px;
   color: rgba(161, 161, 161, 0.84); }
-
-/*deprecated*/
-.section-heading {
-  margin-bottom: 1.25rem; }
   @media only screen and (max-width: 37.5em) {
-    .section-heading {
-      margin-bottom: 1.69rem; } }
-
-.heading-section {
-  font-weight: bold;
-  font-size: 18px; }
-
-.heading--place {
-  font-size: 14px;
-  color: #858585; }
-  @media only screen and (max-width: 37.5em) {
-    .heading--place {
-      font-size: 12px;
-      font-weight: normal; } }
-
-.heading--filter, .heading-settings {
-  font-weight: bold;
-  font-size: 13px;
-  color: black; }
-
-@media only screen and (max-width: 37.5em) {
-  .heading-settings {
-    font-weight: normal; } }
-
-.paragraph-1 {
-  font-size: 14px;
-  color: #333333; }
-  @media only screen and (max-width: 37.5em) {
-    .paragraph-1 {
-      font-size: 12px; } }
-
-.paragraph-2 {
-  font-size: 12px;
-  color: #858585;
-  letter-spacing: 0; }
-
-.heading--button {
-  font-weight: bold;
-  font-size: 18px;
-  letter-spacing: 0; }
-
-.heading--popup-slider {
-  font-size: 18px;
-  color: #FFFFFF;
-  letter-spacing: 0;
-  font-weight: bold; }
-
-.heading--thermostat {
-  font-weight: bold;
-  font-size: 66px;
-  color: #333333;
-  letter-spacing: 0; }
+    .card--data-music {
+      font-size: 14px; } }
 
 .grid {
   height: 100vh;
@@ -184,6 +161,10 @@ body {
   grid-template-rows: minmax(3.25rem, 5.75rem) 1fr minmax(3rem, 4rem);
   grid-template-columns: 1fr 64rem 1fr;
   grid-template-areas: "header header header"  ". content ." "footer footer footer"; }
+  @media only screen and (max-width: 37.5em) {
+    .grid {
+      grid-template-rows: minmax(3.25rem, 5.75rem) max-content minmax(3rem, 4rem);
+      grid-template-columns: 1.25rem 1fr 1.25rem; } }
   .grid .header {
     grid-area: header; }
   .grid .content {
@@ -244,16 +225,47 @@ body {
 .content {
   height: 100%;
   width: 64rem;
-  padding-top: 2rem;
+  padding-top: 1.13rem;
   padding-bottom: 5rem; }
+  @media only screen and (max-width: 37.5em) {
+    .content {
+      width: 100%; } }
   .content__header {
     margin-bottom: 2rem; }
+    @media only screen and (max-width: 37.5em) {
+      .content__header {
+        margin-bottom: 1.19rem; } }
 
 .events {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 1.25rem; }
+  @media only screen and (max-width: 37.5em) {
+    .events {
+      grid-template-columns: 1fr;
+      grid-gap: 1rem; } }
+
+.card__s {
+  grid-column-start: span 2;
+  grid-row-start: span 1; }
+  @media only screen and (max-width: 37.5em) {
+    .card__s {
+      grid-column-start: span 1; } }
+
+.card__m {
+  grid-column-start: span 3;
+  grid-row-start: span 1; }
+  @media only screen and (max-width: 37.5em) {
+    .card__m {
+      grid-column-start: span 1; } }
+
+.card__l {
+  grid-column-start: span 4;
+  grid-row-start: span 3; }
+  @media only screen and (max-width: 37.5em) {
+    .card__l {
+      grid-column-start: span 1; } }
 
 .footer {
   display: flex;
@@ -293,47 +305,40 @@ body {
     display: grid;
     grid-template-areas: "description description" "data data";
     position: relative; }
-  .card__s {
-    grid-column-start: span 2;
-    grid-row-start: span 1; }
-    .card__s .card__type--top,
-    .card__s .card__type--bottom {
-      grid-row-gap: 1.25rem; }
-    .card__s .card__type--top {
-      padding: .86rem 1.25rem 1.25rem 1.31rem;
-      grid-template-areas: "header" "source" "time"; }
-    .card__s .card__type--bottom {
-      padding: 0 1.25rem 0 1.31rem; }
-  .card__m {
-    grid-column-start: span 3;
-    grid-row-start: span 1; }
-    .card__m .card__type--top,
-    .card__m .card__type--bottom {
-      grid-row-gap: 1.33rem; }
-    .card__m .card__type--top {
-      grid-template-areas: "header header" "source time";
-      padding: 1.25rem 1.25rem 0.5rem 1.25rem; }
-    .card__m .card__type--bottom {
-      padding: 1.25rem; }
-    .card__m .card--time-text {
-      text-align: right; }
-  .card__l {
-    grid-column-start: span 4;
-    grid-row-start: span 3; }
-    .card__l .card__type--top,
-    .card__l .card__type--bottom {
-      grid-row-gap: 1.5rem; }
-    .card__l .card__type--top {
-      grid-template-areas: " header header" "source time";
-      padding: 1.25rem 1.25rem 1.25rem 1.25rem; }
-    .card__l .card__type--bottom {
-      padding: 0 1.25rem 1.25rem 1.25rem; }
-    .card__l .card--time-text {
-      text-align: right; }
-    .card__l .card--paragraph {
-      font-size: 24px; }
-    .card__l .card__description {
-      margin-right: 1.5rem; }
+  .card__s .card__type--top,
+  .card__s .card__type--bottom {
+    grid-row-gap: 1.25rem; }
+  .card__s .card__type--top {
+    padding: .86rem 1.25rem 1.25rem 1.31rem;
+    grid-template-areas: "header header" "source source" "time time"; }
+    @media only screen and (max-width: 37.5em) {
+      .card__s .card__type--top {
+        grid-template-areas: "header header" "source time"; } }
+  .card__s .card__type--bottom {
+    padding: 0 1.25rem 0 1.31rem; }
+  .card__m .card__type--top,
+  .card__m .card__type--bottom {
+    grid-row-gap: 1.33rem; }
+  .card__m .card__type--top {
+    grid-template-areas: "header header" "source time";
+    padding: 1.25rem 1.25rem 0.5rem 1.25rem; }
+  .card__m .card__type--bottom {
+    padding: 1.25rem; }
+  .card__m .card--time-text {
+    text-align: right; }
+  .card__l .card__type--top,
+  .card__l .card__type--bottom {
+    grid-row-gap: 1.5rem; }
+  .card__l .card__type--top {
+    grid-template-areas: " header header" "source time";
+    padding: 1.25rem 1.25rem 1.25rem 1.25rem; }
+  .card__l .card__type--bottom {
+    padding: 0 1.25rem 1.25rem 1.25rem; }
+  .card__l .card--time-text {
+    text-align: right; }
+  .card__l .card__description {
+    margin-right: 1.5rem;
+    color: #333333; }
   .card__critical {
     background-color: #DB5341;
     color: white; }
@@ -344,7 +349,7 @@ body {
     .card__critical ~ .card__type--bottom::before {
       content: "";
       display: block;
-      height: 1rem;
+      height: 1.25rem;
       width: 100%;
       background-color: #FAFAFA;
       border-top-left-radius: 1.25rem;
@@ -353,8 +358,7 @@ body {
       top: -1rem; }
   .card__info {
     background-color: #FAFAFA;
-    color: #333333;
-    border-radius: 1.25rem; }
+    color: #333333; }
   .card__header {
     grid-area: header;
     width: 100%;
@@ -367,23 +371,39 @@ body {
   .card__time {
     grid-area: time; }
   .card__description {
-    grid-area: description; }
+    grid-area: description;
+    z-index: 2; }
   .card__data {
     grid-area: data;
-    align-self: end; }
+    align-self: end;
+    z-index: 2; }
     .card__data__image--img {
-      width: 100%; }
+      width: 100%;
+      border-radius: 1.25rem; }
+    .card__data__image__settings {
+      display: none; }
+      @media only screen and (max-width: 37.5em) {
+        .card__data__image__settings {
+          display: flex;
+          justify-content: space-between;
+          margin-top: .88rem; } }
     .card__data__climate {
       display: flex; }
     .card__data__temperature {
       margin-right: 3.25rem; }
     .card__data__buttons {
       display: flex; }
+      @media only screen and (max-width: 37.5em) {
+        .card__data__buttons {
+          justify-content: space-between; } }
       .card__data__buttons--btn {
         width: 8.25rem;
         height: 3.38rem;
         background: #E5E5E5;
         border-radius: 8px; }
+        @media only screen and (max-width: 37.5em) {
+          .card__data__buttons--btn {
+            height: 2.25rem; } }
         .card__data__buttons--btn:first-child {
           background: #FFD93E;
           margin-right: 1.13rem; }
@@ -420,6 +440,12 @@ body {
           flex: 1 1 100%; }
       .card__data__music .music__icons--item:first-child {
         margin-right: 1.69rem; }
+  .card:hover {
+    background-color: #F3F3F3;
+    box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.5); }
+    .card:hover .card__info,
+    .card:hover .card__info::before {
+      background-color: #F3F3F3; }
 
 .icon--card {
   width: 3rem;
