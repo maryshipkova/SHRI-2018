@@ -91,7 +91,7 @@ body {
   opacity: 1; }
 
 .text--footer {
-  font-size: .75rem;
+  font-size: 12px;
   color: #858585;
   letter-spacing: 0.01px; }
 
@@ -158,13 +158,13 @@ body {
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-rows: minmax(3.25rem, 5.75rem) 1fr minmax(3rem, 4rem);
+  grid-template-rows: 5.75rem 1fr 4rem;
   grid-template-columns: 1fr 64rem 1fr;
   grid-template-areas: "header header header"  ". content ." "footer footer footer"; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .grid {
       width: 100%;
-      grid-template-rows: minmax(3.25rem, 5.75rem) max-content minmax(3rem, 4rem);
+      grid-template-rows: 4.13rem max-content minmax(3rem, 4rem);
       grid-template-columns: 1.25rem 1fr 1.25rem; } }
   .grid .header {
     grid-area: header; }
@@ -183,10 +183,13 @@ body {
       border-bottom: none; } }
   .header__logo {
     margin-right: 1.31rem;
-    margin-left: 2.63rem; }
+    margin-left: 2.63rem;
+    width: 6.75rem; }
     .header__logo .logo {
-      width: 6.75rem;
-      height: auto; }
+      width: 100%; }
+    @media only screen and (max-width: 37.5em) {
+      .header__logo {
+        margin-left: 1.25rem; } }
   .header__nav {
     position: relative; }
     @media only screen and (max-width: 37.5em) {
@@ -228,9 +231,12 @@ body {
   width: 64rem;
   padding-top: 1.13rem;
   padding-bottom: 5rem; }
-  @media only screen and (max-width: 37.5em) {
+  @media only screen and (max-width: 56.25em) {
     .content {
       width: 100%; } }
+  @media only screen and (max-width: 37.5em) {
+    .content {
+      padding-top: 0; } }
   .content__header {
     margin-bottom: 2rem; }
     @media only screen and (max-width: 37.5em) {
@@ -241,7 +247,12 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 1.25rem; }
+  grid-gap: 1.25rem;
+  grid-auto-flow: dense; }
+  @media only screen and (max-width: 56.25em) {
+    .events {
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1rem; } }
   @media only screen and (max-width: 37.5em) {
     .events {
       grid-template-columns: 1fr;
@@ -257,6 +268,9 @@ body {
 .card__m {
   grid-column-start: span 3;
   grid-row-start: span 1; }
+  @media only screen and (max-width: 56.25em) {
+    .card__m {
+      grid-column-start: span 4; } }
   @media only screen and (max-width: 37.5em) {
     .card__m {
       grid-column-start: span 1; } }
@@ -296,7 +310,8 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  position: relative; }
   .card__type--top {
     display: grid;
     grid-template-columns: 1fr;
@@ -311,21 +326,33 @@ body {
   .card__s .card__type--bottom {
     grid-row-gap: 1.25rem; }
   .card__s .card__type--top {
-    padding: .86rem 1.25rem 1.25rem 1.31rem;
+    padding: 0.86rem 1.25rem 1.25rem 1.31rem;
     grid-template-areas: "header header" "source source" "time time"; }
     @media only screen and (max-width: 37.5em) {
       .card__s .card__type--top {
         grid-template-areas: "header header" "source time"; } }
+    @media only screen and (max-width: 37.5em) {
+      .card__s .card__type--top {
+        padding: 1rem; } }
   .card__s .card__type--bottom {
     padding: 0 1.25rem 0 1.31rem; }
+    @media only screen and (max-width: 37.5em) {
+      .card__s .card__type--bottom {
+        padding: 0 1rem 0 1rem; } }
   .card__m .card__type--top,
   .card__m .card__type--bottom {
     grid-row-gap: 1.33rem; }
   .card__m .card__type--top {
     grid-template-areas: "header header" "source time";
     padding: 1.25rem 1.25rem 0.5rem 1.25rem; }
+    @media only screen and (max-width: 37.5em) {
+      .card__m .card__type--top {
+        padding: 1rem 1rem 1rem 1rem; } }
   .card__m .card__type--bottom {
     padding: 1.25rem; }
+    @media only screen and (max-width: 37.5em) {
+      .card__m .card__type--bottom {
+        padding: 1rem; } }
   .card__m .card--time-text {
     text-align: right; }
   .card__l .card__type--top,
@@ -333,9 +360,15 @@ body {
     grid-row-gap: 1.5rem; }
   .card__l .card__type--top {
     grid-template-areas: " header header" "source time";
-    padding: 1.25rem 1.25rem 1.25rem 1.25rem; }
+    padding: 1.25rem; }
+    @media only screen and (max-width: 37.5em) {
+      .card__l .card__type--top {
+        padding: 1rem 1rem 1rem 1rem; } }
   .card__l .card__type--bottom {
     padding: 0 1.25rem 1.25rem 1.25rem; }
+    @media only screen and (max-width: 37.5em) {
+      .card__l .card__type--bottom {
+        padding: 0 1rem 1rem 1rem; } }
   .card__l .card--time-text {
     text-align: right; }
   .card__l .card__description {
@@ -368,6 +401,10 @@ body {
     align-items: center; }
     .card__header .card__icon {
       margin-right: 1.21rem; }
+  .card__title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; }
   .card__source {
     grid-area: source; }
   .card__time {
@@ -411,6 +448,9 @@ body {
         .card__data__buttons--btn:first-child {
           background: #FFD93E;
           margin-right: 1.13rem; }
+          @media only screen and (max-width: 37.5em) {
+            .card__data__buttons--btn:first-child {
+              margin-right: .25rem; } }
         .card__data__buttons--btn:hover {
           background: #FFD93E;
           cursor: pointer; }
@@ -444,16 +484,35 @@ body {
           flex: 1 1 100%; }
       .card__data__music .music__icons--item:first-child {
         margin-right: 1.69rem; }
+  .card__hover-icon {
+    display: none; }
   .card:hover {
     background-color: #F3F3F3;
     box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.5); }
     .card:hover .card__info,
     .card:hover .card__info::before {
       background-color: #F3F3F3; }
+    .card:hover .card__hover-icon {
+      display: block;
+      position: absolute;
+      right: 1.25rem;
+      z-index: 100; }
+      .card:hover .card__hover-icon--top {
+        top: 1.25rem; }
+      .card:hover .card__hover-icon--bottom {
+        bottom: 1.25rem; }
 
 .icon--card {
-  width: 3rem;
-  height: 3rem; }
+  width: 3.25rem;
+  height: 3.25rem;
+  display: flex; }
+  @media only screen and (max-width: 37.5em) {
+    .icon--card {
+      width: 2.25rem;
+      height: 2.25rem; } }
+  .icon--card__hover {
+    width: 1rem;
+    height: 1rem; }
 
 .icon--music {
   display: block;
@@ -462,3 +521,6 @@ body {
 
 .icon--rotated {
   transform: rotate(180deg); }
+
+.icon--header-nav {
+  width: 1rem; }

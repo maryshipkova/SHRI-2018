@@ -216,6 +216,7 @@ class TemplateFactory {
             card.className = `card card__${event.size}`;
             type.className = `card__type--top card__${event.type}`;
             icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
+
             title.children[0].textContent = event.title;
             source.children[0].textContent = event.source;
             time.children[0].textContent = event.time;

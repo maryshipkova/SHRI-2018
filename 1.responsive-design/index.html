@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Яндекс.Дом</title>
     <link rel="stylesheet" href="css/style.css">
@@ -17,7 +18,8 @@
             </div>
             <nav class="header__nav">
                 <label for="header-toggle" class="header__nav__toggle">
-                    <span class="icon--header-nav">&nbsp;</span>
+                    <img srcset="assets/icon_list_m.png 1x, assets/icon_list_m@2x.png 2x" src="assets/icon_list_m.png"
+                        alt="Logo" class="icon--header-nav">
                 </label>
                 <input type="checkbox" class="header__nav__checkbox" id="header-toggle">
                 <ul class="header__nav__list">
@@ -64,6 +66,11 @@
                     <a href="#" class="text--footer">Условия использования</a>
                 </li>
                 <li class="footer__item">
+                    <a  target="blank" href="https://docviewer.yandex.ru/view/1130000031416100/?*=0XCqW4FslxHh%2FIKRNc5ABV7dPqh7InVybCI6InlhLXdpa2k6Ly93aWtpLWFwaS55YW5kZXgucnUvc2hyaS0yMDE4LWlpL2hvbWV3b3JrL2FkYXB0aXZuYWphLXZqb3JzdGthL2xpY2Vuc2UucGRmIiwidGl0bGUiOiJsaWNlbnNlLnBkZiIsInVpZCI6IjExMzAwMDAwMzE0MTYxMDAiLCJ5dSI6IjIzMTQyNzc1NDE1MTIyOTMwMDkiLCJub2lmcmFtZSI6ZmFsc2UsInRzIjoxNTM4ODQxMjA5NjIzfQ%3D%3D"
+                        class="text--footer">Лицензия</a>
+                </li>
+
+                <li class="footer__item">
                     <a href="#" class="text--footer">&copy; 2001–2017 ООО «Яндекс»</a>
                 </li>
             </ul>
@@ -72,11 +79,21 @@
 
     <template id="card-template">
         <div class="card">
+            <div class="card__hover-icon card__hover-icon--top">
+                <svg class="icon--card__hover">
+                    <use xlink:href="assets/cross.svg#Events"></use>
+                </svg>
+            </div>
+            <div class="card__hover-icon  card__hover-icon--bottom">
+                <svg class="icon--card__hover ">
+                    <use xlink:href="assets/Next.svg#Events"></use>
+                </svg>
+            </div>
             <div class="card__type--top card__info">
                 <div class="card__header">
                     <div class="card__icon">
-                        <svg class="icon--card">
-
+                        <svg class="icon--card" viewBox = "-10 -15 62 65"  preserveAspectRatio="xMinYMid" >
+                            <use xlink:href=""></use>
                         </svg>
                     </div>
                     <div class="card__title">

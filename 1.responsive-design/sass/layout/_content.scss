@@ -5,8 +5,11 @@
     padding-top: 1.13rem;
     padding-bottom: 5rem;
 
-    @include responsive(phone) {
+    @include responsive(tab-port) {
         width: 100%;
+    }
+    @include responsive(phone) {
+        padding-top: 0;
     }
 
     &__header{
@@ -23,12 +26,16 @@
     display: grid;
     grid-template-columns: repeat(6,1fr);
     grid-gap: $grid-gap; //TODO
+    grid-auto-flow: dense;
 
+    @include responsive(tab-port) {
+        grid-template-columns: repeat(4,1fr);
+       grid-gap: $grid-mobile-gap;
+    }
     @include responsive(phone) {
         grid-template-columns: 1fr; ///
         grid-gap: $grid-mobile-gap;
     }
-
 }
 
 .card{
@@ -36,17 +43,25 @@
         grid-column-start: span 2;
         grid-row-start: span 1;
 
+        // @include responsive(tab-port) {
+        //      grid-column-start: span 1;
+        // }
         @include responsive(phone) {
             grid-column-start: span 1;
         }
+     
     }
     &__m {
         grid-column-start: span 3;
         grid-row-start: span 1;
 
+        @include responsive(tab-port) {
+            grid-column-start: span 4;
+        }
         @include responsive(phone) {
             grid-column-start: span 1;
         }
+
     }
 
     &__l {
@@ -56,6 +71,7 @@
         @include responsive(phone) {
             grid-column-start: span 1;
         }
+
 
     }
 

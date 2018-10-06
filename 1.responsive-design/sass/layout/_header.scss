@@ -9,9 +9,12 @@
     &__logo {
         margin-right: 1.31rem;
         margin-left: 2.63rem;
+        width: 6.75rem;
         .logo {
-            width: 6.75rem;
-            height: auto;
+            width: 100%;
+        }
+        @include responsive(phone) {
+            margin-left: $grid-gap;
         }
     }
     &__nav {

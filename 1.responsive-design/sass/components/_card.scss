@@ -12,6 +12,8 @@
     flex-direction: column;
     justify-content: space-between;
 
+    position: relative;
+
     // grid-template-rows: 1fr max-content;
     // grid-template-columns: 1fr 1fr;
 
@@ -52,7 +54,7 @@
         }
 
         .card__type--top {
-            padding: .86rem 1.25rem 1.25rem 1.31rem;
+            padding: .86rem $grid-gap 1.25rem 1.31rem;
             grid-template-areas: "header header"
                 "source source"
                 "time time";
@@ -61,28 +63,17 @@
                 grid-template-areas: "header header"
                     "source time";
             }
+            @include responsive(phone) {
+                padding: $grid-mobile-gap;
+            }
         }
 
         .card__type--bottom {
             padding: 0 1.25rem 0 1.31rem;
-
+            @include responsive(phone) {
+                padding: 0 $grid-mobile-gap 0 $grid-mobile-gap;
+            }
         }
-
-        // display: grid;
-
-        // grid-template-columns: 1fr;
-        // grid-auto-rows: max-content;
-
-        // grid-row-gap: 1.25rem;
-        // .card__description{
-        //     padding-bottom: 1.25rem;
-        // }
-
-        // .card{
-        //     &__header{
-        //         margin-top: 1.25rem;
-        //     }
-        // }
 
     }
 
@@ -99,11 +90,16 @@
                 "header header"
                 "source time";
             padding: $grid-gap $grid-gap .5rem $grid-gap;
+            @include responsive(phone) {
+                padding: $grid-mobile-gap $grid-mobile-gap 1rem $grid-mobile-gap;
+            }
         }
 
         .card__type--bottom {
             padding: $grid-gap;
-
+            @include responsive(phone) {
+                padding: $grid-mobile-gap;
+            }
         }
 
         .card--time-text {
@@ -125,12 +121,17 @@
         .card__type--top {
             grid-template-areas: " header header"
                 "source time";
-            padding: $grid-gap $grid-gap $grid-gap $grid-gap;
-
+            padding: $grid-gap;
+            @include responsive(phone) {
+                padding: $grid-mobile-gap $grid-mobile-gap 1rem $grid-mobile-gap;
+            }
         }
 
         .card__type--bottom {
             padding: 0 $grid-gap $grid-gap $grid-gap;
+            @include responsive(phone) {
+                padding: 0 $grid-mobile-gap $grid-mobile-gap $grid-mobile-gap;
+            }
         }
 
         .card--time-text {
@@ -185,13 +186,19 @@
             margin-right: 1.21rem;
         }
     }
-
+    &__title{
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+      
+    }
     &__source {
         grid-area: source;
     }
 
     &__time {
         grid-area: time;
+        // align-self: end;
     }
 
     &__description {
@@ -234,7 +241,6 @@
             display: flex;
 
             @include responsive(phone) {
-
                 justify-content: space-between;
             }
 
@@ -252,6 +258,9 @@
                 &:first-child {
                     background: $button-active-color;
                     margin-right: 1.13rem;
+                    @include responsive(phone) {
+                        margin-right: .25rem;
+                    }
                 }
 
                 &:hover {
@@ -332,15 +341,42 @@
 
 
     }
+    &__hover-icon{
+        display: none;
+    }
+    
 
-    &:hover,
-        {
+
+    &:hover{
         background-color: #F3F3F3;
         box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.50);
 
         .card__info,
         .card__info::before {
             background-color: #F3F3F3;
+        }
+
+        .card__hover-icon{
+            display: block;
+            position: absolute;
+            right: $grid-gap;
+            z-index: 100;
+
+            &--top{
+                top:$grid-gap;
+
+            @include responsive(phove) {
+                top:$grid-mobile-gap;
+                }
+            }
+
+            &--bottom{
+                bottom:$grid-gap;
+
+            @include responsive(phove) {
+                bottom:$grid-mobile-gap;
+                }
+            }
         }
     }
 
