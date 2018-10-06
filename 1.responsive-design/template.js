@@ -149,7 +149,7 @@ class TemplateFactory {
             image.children[0].src = `assets/${event.data.image}`;
 
         } else {
-            this.removeItem(image);
+            this.removeItem(image.parentElement);
         }
 
         if (event.data.temperature) {

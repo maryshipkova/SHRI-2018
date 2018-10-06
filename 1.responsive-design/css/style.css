@@ -379,16 +379,18 @@ body {
     grid-area: data;
     align-self: end;
     z-index: 2; }
-    .card__data__image--img {
-      width: 100%;
-      border-radius: 1.25rem; }
-    .card__data__image__settings {
-      display: none; }
-      @media only screen and (max-width: 37.5em) {
-        .card__data__image__settings {
-          display: flex;
-          justify-content: space-between;
-          margin-top: .88rem; } }
+    .card__data__image {
+      overflow: hidden; }
+      .card__data__image--img {
+        width: 100%;
+        border-radius: 1.25rem; }
+      .card__data__image__settings {
+        display: none; }
+        @media only screen and (max-width: 37.5em) {
+          .card__data__image__settings {
+            display: flex;
+            justify-content: space-between;
+            margin-top: .88rem; } }
     .card__data__climate {
       display: flex; }
     .card__data__temperature {

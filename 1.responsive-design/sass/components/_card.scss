@@ -206,6 +206,7 @@
         align-self: end;
         z-index: 2;
         &__image {
+            overflow: hidden;
             &--img {
                 width: 100%;
                 border-radius: $grid-gap;
@@ -291,6 +292,7 @@
                 &--img {
                     width: 3.31rem;
                     border-radius: 20%;
+
                 }
 
                 &__main {

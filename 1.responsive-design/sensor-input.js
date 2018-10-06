@@ -1,7 +1,6 @@
 const element = document.querySelectorAll('.card__data__image--img')[1];
 const zoomField = document.querySelectorAll('.settings--zoom')[1];
 const brightnessField = document.querySelectorAll('.settings--brightness')[1];
-console.log(element);
 
 let transformProperties = {
     'translateX': 0,
@@ -10,33 +9,53 @@ let transformProperties = {
     'brightness': 100
 }
 
+console.log(element.style);
+
 //reset settings
 zoomField.addEventListener('touchstart', (event)=>{
     updateProterty('translateX', 0);
     updateProterty('translateY', 0);
     updateProterty('scale', 1.0);
-    zoomField.textContent = 1.0;
+    zoomField.innerHTML = 100;
+});
+
+brightnessField.addEventListener('touchstart', (event)=>{
+    brightnessField.innerHTML = 100;
 });
 
 function updateProterty(property, value) {
     transformProperties[property] = value;
     element.style.transform = `translateX(${transformProperties.translateX}%) translateY(${transformProperties.translateY}%) scale(${transformProperties.scale})`;
+    element.style.filter = `brightness(${transformProperties.brightness}%)`;
 }
 
+function handleRotation(eventRotation){
+    if(!element.dataset.prevRotation){
+        element.dataset.prevRotation = eventRotation;
+        return;
+    }
+    if (Math.abs(eventRotation - element.dataset.prevRotation) > 3 ) {
+        updateProterty('brightness', (element.dataset.prevRotation < eventRotation) ? transformProperties.brightness + 2 : transformProperties.brightness - 2);
+        element.dataset.prevRotation = eventRotation;
+        brightnessField.innerHTML = transformProperties.brightness;
+    }
+}
 element.addEventListener('gesturechange', (event) => {
-
+    handleRotation(event.rotation);
     if(event.scale > 1.0){
         updateProterty('scale', event.scale);
-        zoomField.textContent = event.scale.toPrecision(3);
+        zoomField.innerHTML = (event.scale*100).toPrecision(3);
     }
 
-    console.log(event);
+
 });
 
 element.addEventListener('touchstart', (event) => {
     element.dataset.prevX = '';
     element.dataset.prevY = '';
+    element.dataset.prevRotation = '';
 });
+
 element.addEventListener('touchmove', (event) => {
     event.preventDefault();
     if (event.touches.length === 1 && transformProperties.scale > 1.0) {
