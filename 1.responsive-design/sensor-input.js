@@ -2,79 +2,131 @@ const element = document.querySelectorAll('.card__data__image--img')[1];
 const zoomField = document.querySelectorAll('.settings--zoom')[1];
 const brightnessField = document.querySelectorAll('.settings--brightness')[1];
 
-let transformProperties = {
+const TRANSFORM_PROPERTIES = {
     'translateX': 0,
     'translateY': 0,
     'scale': 1.0,
     'brightness': 100
 }
-
-console.log(element.style);
-
-//reset settings
-zoomField.addEventListener('touchstart', (event)=>{
-    updateProterty('translateX', 0);
-    updateProterty('translateY', 0);
-    updateProterty('scale', 1.0);
-    zoomField.innerHTML = 100;
-});
-
-brightnessField.addEventListener('touchstart', (event)=>{
-    brightnessField.innerHTML = 100;
-});
-
-function updateProterty(property, value) {
-    transformProperties[property] = value;
-    element.style.transform = `translateX(${transformProperties.translateX}%) translateY(${transformProperties.translateY}%) scale(${transformProperties.scale})`;
-    element.style.filter = `brightness(${transformProperties.brightness}%)`;
+const INITIAL_CONDITIONS = {
+    'translateX': "",
+    'translateY': "",
+    'rotation': "",
 }
+class sensorInputHandler {
+    constructor(element, INITIAL_CONDITIONS, transformProperties, zoomField, brightnessField) {
+        this._element = element;
+        this._transformProperties = transformProperties;
+        this._prevConditions = INITIAL_CONDITIONS;
+        this._startProperties = JSON.parse(JSON.stringify(transformProperties));
+        this._zoomField = zoomField;
+        this._brightnessField = brightnessField;
 
-function handleRotation(eventRotation){
-    if(!element.dataset.prevRotation){
-        element.dataset.prevRotation = eventRotation;
-        return;
-    }
-    if (Math.abs(eventRotation - element.dataset.prevRotation) > 3 ) {
-        updateProterty('brightness', (element.dataset.prevRotation < eventRotation) ? transformProperties.brightness + 2 : transformProperties.brightness - 2);
-        element.dataset.prevRotation = eventRotation;
-        brightnessField.innerHTML = transformProperties.brightness;
-    }
-}
-element.addEventListener('gesturechange', (event) => {
-    handleRotation(event.rotation);
-    if(event.scale > 1.0){
-        updateProterty('scale', event.scale);
-        zoomField.innerHTML = (event.scale*100).toPrecision(3);
     }
 
+    _updateField(field, newCondition) {
+        field.innerHTML = newCondition;
+    }
+    _updateView() {
+        this._element.style.transform = `translateX(${this._transformProperties.translateX}%) translateY(${this._transformProperties.translateY}%) scale(${this._transformProperties.scale})`;
+        this._element.style.filter = `brightness(${this._transformProperties.brightness}%)`;
+    }
 
-});
+    _updateProperty(property, value) {
+        this._transformProperties[property] = value;
+        this._updateView();
+    }
+    setEventHandlers() {
+        this._zoomField.addEventListener('touchstart', this._resetProperties);
+        this._brightnessField.addEventListener('touchstart', this._resetProperties);
+        this._element.addEventListener('touchstart', this._resetConditions);
+        this._element.addEventListener('gesturechange', (event) => {
+            this._handleRotation(event.rotation);
+            if(event.scale > 1.0){
+                this._updateProperty('scale', event.scale);
+                this._updateField(this._zoomField,(event.scale*100).toPrecision(3));
+            }
+        });
 
-element.addEventListener('touchstart', (event) => {
-    element.dataset.prevX = '';
-    element.dataset.prevY = '';
-    element.dataset.prevRotation = '';
-});
 
-element.addEventListener('touchmove', (event) => {
-    event.preventDefault();
-    if (event.touches.length === 1 && transformProperties.scale > 1.0) {
-        let clientX = event.touches[0].clientX;
-        let clientY = event.touches[0].clientY;
-        if(!element.dataset.prevX || ! element.dataset.prevY){
-            element.dataset.prevX = clientX;
-            element.dataset.prevY = clientY;
+        element.addEventListener('touchmove', (event) => {
+            event.preventDefault();
+            if (event.touches.length === 1) { // && transformProperties.scale > 1.0
+                if (!this._prevConditions.translateX || !this._prevConditions.translateY) {
+                    this._prevConditions.translateX =  event.touches[0].clientX;
+                    this._prevConditions.translateY =  event.touches[0].clientY;
+                    return;
+                }
+                // let newXValue = this._calcChanges('translateX', event.touches[0].clientX);
+                // console.log('X', newXValue, event.touches[0].clientX, this._prevConditions.translateX);
+                // if (newXValue) {
+                //     this._updateProperty('translateX', this._prevConditions.translateX);
+                // }
+                // let newYValue = this._calcChanges('translateY', event.touches[0].clientY);
+                // console.log('X', newXValue);
+                // if (newYValue) {
+                //     this._updateProperty('translateY', newYValue);
+                // }
+
+                let clientX = event.touches[0].clientX;
+                let clientY = event.touches[0].clientY;
+                if (! this._prevConditions.translateX  || !this._prevConditions.translateY) {
+                     this._prevConditions.translateX  = clientX;
+                    this._prevConditions.translateY = clientY;
+                    return;
+                }
+                // console.log(this._transformProperties);
+                if (Math.abs(clientX -  this._prevConditions.translateX ) > 3) {
+                    this._updateProperty('translateX', ( this._prevConditions.translateX  < clientX) ? this._transformProperties.translateX + 2 : this._transformProperties.translateX - 2);
+                    this._prevConditions.translateX  = clientX;
+                }
+                if (Math.abs(clientY - this._prevConditions.translateY) > 3) {
+                    this._updateProperty('translateY', (this._prevConditions.translateY < clientY) ? this._transformProperties.translateY + 2 : this._transformProperties.translateY - 2);
+                    this._prevConditions.translateY  = clientY;
+                }
+
+            }
+
+        });
+    }
+    _resetProperties() {
+        _updateField(this._zoomField, 100);
+        _updateField(this._brightnessField, 100);
+        for (let prop in this._transformProperties) {
+            this._updateProperty(prop, this._startProperties[prop]);
+        }
+    }
+    _resetConditions() {
+        for (let prop in this._prevConditions) {
+            this._prevConditions[prop] = '';
+        }
+    }
+
+    _handleRotation(eventRotation) {
+        if (!this._prevConditions.rotation) {
+            this._prevConditions.rotation = eventRotation;
             return;
         }
-        if (Math.abs(clientX - element.dataset.prevX) > 3 ) {
-            updateProterty('translateX', (element.dataset.prevX < clientX) ? transformProperties.translateX + 2 : transformProperties.translateX - 2);
-            element.dataset.prevX = clientX;
+        if (Math.abs(eventRotation - this._prevConditions.rotation) > 3) {
+            this._updateProperty('brightness', (this._prevConditions.rotation < eventRotation) ? this._transformProperties.brightness + 2 : this._transformProperties.brightness - 2);
+            this._updateField(this._brightnessField, this._transformProperties.brightness);
+            this._prevConditions.rotation  = eventRotation;
         }
-        if (Math.abs(clientY - element.dataset.prevY) > 3 ) {
-            updateProterty('translateY', (element.dataset.prevY < clientY) ? transformProperties.translateY + 2 : transformProperties.translateY - 2);
-            element.dataset.prevY = clientY;
-        }
-
+        // let newBrightnessValue = this._calcChanges('rotation', eventRotation);
+        // if (newBrightnessValue) {
+        //     this._updateProterty('brightness', newBrightnessValue)
+        //     this._updateField(this._brightnessField, newBrightnessValue);
+        // }
     }
 
-});
+    _calcChanges(conditionName, eventCondition) {
+        if (Math.abs(eventCondition - this._prevConditions[conditionName]) > 3) {
+            let newConditionValue = (this._prevConditions[conditionName] < eventCondition) ? this._prevConditions[conditionName] + 2 : this._prevConditions[conditionName] - 2;
+            this._prevConditions[conditionName] = eventCondition;
+            return newConditionValue;
+        }
+    }
+}
+
+let ImageSensorInputHandler = new sensorInputHandler(element, INITIAL_CONDITIONS, TRANSFORM_PROPERTIES, zoomField, brightnessField);
+ImageSensorInputHandler.setEventHandlers();
