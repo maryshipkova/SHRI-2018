@@ -207,12 +207,7 @@ class TemplateFactory {
                 description = template.querySelector('.card__description'),
                 icon = template.querySelector('.card__icon'),
                 data = template.querySelector('.card__data');
-            ////////////////let card = template.content.querySelector('.card'), +=cardname
-            // if(event.size ==="s"){
-
-            // }else{
                 
-            // }
             card.className = `card card__${event.size}`;
             type.className = `card__type--top card__${event.type}`;
             icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
