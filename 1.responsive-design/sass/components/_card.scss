@@ -104,6 +104,7 @@
     }
 
     &__l {
+
         .card__type--top,
         .card__type--bottom {
             grid-row-gap: 1.5rem;
@@ -223,8 +224,9 @@
                     margin-top: .88rem;
                     flex-wrap: wrap;
                 }
-                .settings--range{
-                   flex: 1 0 100%;
+
+                .settings--range {
+                    flex: 1 0 100%;
                 }
             }
         }
@@ -318,7 +320,8 @@
                         flex: 1 1 100%;
                         cursor: pointer;
                         -webkit-appearance: none;
-                        &:focus{
+
+                        &:focus {
                             outline: none;
                         }
 
@@ -326,7 +329,7 @@
                             border: 1px solid $color-music-range-1;
                             height: .06rem;
 
-                          }
+                        }
 
                         &::-moz-range-track {
                             border: 1px solid $color-music-range-1;
@@ -340,6 +343,7 @@
                             background: $color-music-range-2;
                             border-radius: 4.5px;
                         }
+
                         &::-webkit-slider-thumb {
                             -webkit-appearance: none;
                             transform: translateY(-50%);
@@ -364,7 +368,7 @@
                             border-radius: 2px;
                             background-color: $color-music-range-2;
                             height: .25rem;
-                          }
+                        }
 
                         &::-moz-range-track {
                             border-radius: 2px;

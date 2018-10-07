@@ -175,6 +175,7 @@ const PROPERTIES = [{
         selector: '.card__data',
         neededChild: 1,
         optional: 1,
+        children: []
     },
 ]
 
@@ -194,7 +195,6 @@ class TemplateFactory {
     }
 
     _removeItem(item) {
-        console.log(item);
         item.parentElement.removeChild(item);
     }
     renderEventData(event, dataNode) {
@@ -254,7 +254,7 @@ class TemplateFactory {
 
             let template = this._initTemplate();
             this._properties.forEach((prop) => {
-                if (prop.name != 'data') {
+                if (!prop.children) {
                     let element = prop.neededChild ? prop.element.children[0] : prop.element,
                         inputContent = prop.innerHtml ? prop.innerHtml.replace(this._stringToReplace, event[prop.name]) : event[prop.name];
 
@@ -270,44 +270,18 @@ class TemplateFactory {
                         element.innerHTML = inputContent;
                     }
 
-                }else{
-                    if (event.data) {
-                        this.renderEventData(event, prop.element);    
+                } else {
+                    if (event[prop.name]) {
+                        this.renderEventData(event, prop.element);
                     } else {
                         this._removeItem(prop.element);
                     }
                 }
 
             });
-            // console.log(template.childNodes);
-            // let card = template.querySelector('.card'),
-            //     type = template.querySelector('.card__type--top'),
-            //     info = template.querySelector('.card__type--bottom'),
-            //     title = template.querySelector('.card__title'),
-            //     source = template.querySelector('.card__source'),
-            //     time = template.querySelector('.card__time'),
-            //     description = template.querySelector('.card__description'),
-            //     icon = template.querySelector('.card__icon'),
-            //     data = template.querySelector('.card__data');
-
-
-
-            // card.className = `card card__${event.size}`;
-            // type.className = `card__type--top card__${event.type}`;
-            // icon.children[0].innerHTML = `<use xlink:href="assets/${event.icon}.svg#Events"></use>`;
-
-            // title.children[0].textContent = event.title;
-            // source.children[0].textContent = event.source;
-            // time.children[0].textContent = event.time;
-
-            // if (event.description) {
-            //     description.children[0].textContent = event.description;
-            // } else {
-            //     this.removeItem(info);
-            // }
             container.appendChild(template.cloneNode(true));
         });
-        
+
     }
 }
 
