@@ -1,0 +1,20 @@
+video {
+    width: 300px;
+    height: 200px;
+}
+.sstv{  
+    &__row{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    &__expanded{
+        display: none;
+        width: 64rem;
+        height: 20rem;
+        &>*{
+            width: 100%;
+        }
+    }
+
+}

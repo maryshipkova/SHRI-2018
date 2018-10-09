@@ -1,0 +1,122 @@
+.heading--primary {
+    font-size: 36px;
+    color: $color-dark;
+    text-align: left;
+
+    @include responsive(phone) {
+        font-size: 24px;
+    }
+}
+
+.text--nav-link {
+    font-size: 1rem;
+    line-height: 20px;
+    font-weight: bold;
+    opacity: 0.6;
+
+    &:hover,
+    &:active,
+    &:focus {
+        opacity: 1;
+    }
+}
+
+.link-active {
+    opacity: 1;
+}
+
+.text--footer {
+    font-size: 12px;
+    color: $color-light-grey;
+    letter-spacing: 0.01px;
+}
+
+.text--bold {
+    font-weight: bold;
+}
+
+.card {
+    &--heading {
+        font-size: 24px;
+        font-weight: bold;
+
+        @include responsive(phone) {
+            font-size: 14px;
+        }
+    }
+
+    &--source-text,
+    &--time-text {
+        font-size: 18px;
+        font-weight: normal;
+
+        @include responsive(phone) {
+            font-size: 12px;
+        }
+    }
+
+    &--image-settings {
+        font-size: 12px;
+    }
+
+    &--paragraph {
+        font-size: 20px;
+        color: black;
+
+        @include responsive(phone) {
+            font-size: 18px;
+        }
+    }
+
+    &__l {
+        .card--paragraph {
+            font-size: 24px;
+            color: $color-dark;
+
+            @include responsive(phone) {
+                font-size: 18px;
+            }
+        }
+    }
+
+
+    &--data {
+
+        &-climate {
+            font-size: 18px;
+            color: black;
+
+            @include responsive(phone) {
+                font-size: 14px;
+            }
+        }
+
+
+        &-paragraph {
+            font-size: 20px;
+            color: black;
+        }
+
+        &-music-title {
+            font-size: 20px;
+            color: black;
+
+            @include responsive(phone) {
+                font-size: 18px;
+            }
+        }
+
+        &-music {
+            font-size: 14px;
+            color: rgba($color-music-text, .84);
+
+            @include responsive(phone) {
+                font-size: 14px;
+            }
+        }
+
+    }
+
+
+
+}

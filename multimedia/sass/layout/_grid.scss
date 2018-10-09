@@ -1,0 +1,25 @@
+.grid{
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 5.75rem 1fr 4rem;
+    grid-template-columns: minmax($grid-gap, 1fr) 64rem minmax($grid-gap, 1fr) ;
+    grid-template-areas:"header header header" 
+                        ". content ."
+                        "footer footer footer";
+
+    @include responsive(tab-port) {
+        width: 100%;
+        grid-template-rows: 4.13rem max-content minmax(3rem,4rem); //4rem 8.75rem
+        grid-template-columns: $grid-gap 1fr $grid-gap ;
+    }
+    .header{
+        grid-area: header;
+    }
+    .content{
+        grid-area: content; 
+    }
+    .footer{
+        grid-area: footer; 
+    }
+}

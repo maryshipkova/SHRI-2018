@@ -153,6 +153,26 @@ body {
     .card--data-music {
       font-size: 14px; } }
 
+.content {
+  height: 100%;
+  width: 64rem;
+  padding-top: 1.13rem;
+  padding-bottom: 5rem; }
+  @media only screen and (min-width: 112.5em) {
+    .content {
+      width: 80rem; } }
+  @media only screen and (max-width: 56.25em) {
+    .content {
+      width: 100%; } }
+  @media only screen and (max-width: 37.5em) {
+    .content {
+      padding-top: 0; } }
+  .content__header {
+    margin-bottom: 2rem; }
+    @media only screen and (max-width: 37.5em) {
+      .content__header {
+        margin-bottom: 1.19rem; } }
+
 .grid {
   height: 100vh;
   width: 100vw;
@@ -216,7 +236,7 @@ body {
       display: block;
       position: absolute;
       left: -5rem;
-      z-index: 50;
+      z-index: 100;
       padding: 0 1rem;
       background-color: white;
       border: 1px solid #FAFAFA; }
@@ -225,64 +245,21 @@ body {
         padding-bottom: .5rem;
         border-bottom: 1px solid #FAFAFA; }
 
-.content {
-  height: 100%;
+video {
+  width: 300px;
+  height: 200px; }
+
+.sstv__row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.sstv__expanded {
+  display: none;
   width: 64rem;
-  padding-top: 1.13rem;
-  padding-bottom: 5rem; }
-  @media only screen and (min-width: 112.5em) {
-    .content {
-      width: 80rem; } }
-  @media only screen and (max-width: 56.25em) {
-    .content {
-      width: 100%; } }
-  @media only screen and (max-width: 37.5em) {
-    .content {
-      padding-top: 0; } }
-  .content__header {
-    margin-bottom: 2rem; }
-    @media only screen and (max-width: 37.5em) {
-      .content__header {
-        margin-bottom: 1.19rem; } }
-
-.events {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 1.25rem;
-  grid-auto-flow: dense; }
-  @media only screen and (max-width: 56.25em) {
-    .events {
-      grid-template-columns: repeat(4, 1fr);
-      grid-gap: 1rem; } }
-  @media only screen and (max-width: 37.5em) {
-    .events {
-      grid-template-columns: 1fr;
-      grid-gap: 1rem; } }
-
-.card__s {
-  grid-column-start: span 2;
-  grid-row-start: span 1; }
-  @media only screen and (max-width: 37.5em) {
-    .card__s {
-      grid-column-start: span 1; } }
-
-.card__m {
-  grid-column-start: span 3;
-  grid-row-start: span 1; }
-  @media only screen and (max-width: 56.25em) {
-    .card__m {
-      grid-column-start: span 4; } }
-  @media only screen and (max-width: 37.5em) {
-    .card__m {
-      grid-column-start: span 1; } }
-
-.card__l {
-  grid-column-start: span 4;
-  grid-row-start: span 3; }
-  @media only screen and (max-width: 37.5em) {
-    .card__l {
-      grid-column-start: span 1; } }
+  height: 20rem; }
+  .sstv__expanded > * {
+    width: 100%; }
 
 .footer {
   display: flex;
@@ -434,8 +411,7 @@ body {
             margin-top: .88rem;
             flex-wrap: wrap; } }
         .card__data__image__settings .settings--range {
-          flex: 0 0 80%;
-          margin: auto; }
+          flex: 1 0 100%; }
     .card__data__climate {
       display: flex; }
     .card__data__temperature {

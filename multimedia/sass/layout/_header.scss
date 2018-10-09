@@ -33,7 +33,6 @@
             &:not(:last-child) {
                 margin-right: 1.75rem;
             }
-            
         }
         
         &__checkbox {
@@ -52,7 +51,7 @@
             display: block;
             position: absolute;
             left: -5rem;
-            z-index: 50;
+            z-index: 100;
             padding: 0 1rem;
             background-color: white;
             border: 1px solid $card-color;
