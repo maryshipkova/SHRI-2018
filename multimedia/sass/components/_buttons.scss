@@ -1,0 +1,21 @@
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.75rem;
+    min-width: 19.19rem;
+    flex: 1 1 100%;
+    background-color: $bg-color;
+    border-radius: 1.25rem;
+    cursor: pointer;
+
+    &:focus,&:active, &:hover{
+        background-color: $button-active-color;
+        color: black;
+    }
+    @include responsive(phone) {
+        width: 100%;
+    }
+}
+
+

@@ -7,7 +7,7 @@ const DATA = {
             "description": "Так держать! За последнюю неделю вы потратили на 10% меньше ресурсов, чем неделей ранее.",
             "icon": "stats",
             "data": {
-                "image": "Richdata.png"
+                "image": "RichData.png"
             },
             "size": "l"
         },

@@ -51,14 +51,27 @@
             </div>
             <section class="sstv">
                 <div class="sstv__row">
-                        <video id="video-1" class="video" controls muted autoplay></video>
-                        <video id="video-2" class="video" controls muted autoplay></video>
-                        <video id="video-3" class="video" controls muted autoplay></video>
-                        <video id="video-4" class="video" controls muted autoplay></video>
-                </div>
-                <div class="sstv__expanded"></div>  
+                    <div class="sstv__video__container">
+                        <video id="video-1" class="sstv__video" controls muted autoplay>
+                        </video>
+                        <a href="#popup-sstv" class="sstv__btn-expand">+</a>  
+                    </div>
+                    <div class="sstv__video__container">
+                        <video id="video-2" class="sstv__video" controls muted autoplay></video>
+                        <!-- <div class="sstv__btn-expand">+</div>      -->
+                    </div>
+                    <div class="sstv__video__container">
+                        <video id="video-3" class="sstv__video" controls muted autoplay></video>
+                        <!-- <div class="sstv__btn-expand">+</div>      -->
+                    </div>
+                    <div class="sstv__video__container">
+                        <video id="video-4" class="sstv__video" controls muted autoplay></video>
+                        <!-- <div class="sstv__btn-expand">+</div>      -->
+                    </div>
 
-            </section>
+                </div>
+
+            </section>        
         </main>
 
 
@@ -87,6 +100,26 @@
             </ul>
         </footer>
     </div><!-- grid -->
+                    <!-- <div class="sstv__expanded"></div> -->
+                    <div class="popup" id="popup-sstv">
+                        <div class="popup__container popup__container--sstv">
+                            <div class="popup__content">
+                                <div class="popup__header">
+                                    meow
+                                </div>
+                            </div>
+                            <div class="popup__buttons--container">
+                                <div class="popup__buttons--content">
+    
+                                    <a href="#" class="btn">
+                                        <h3 class="heading--button">
+                                            Закрыть
+                                        </h3>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
     <script>
         function initVideo(video, url) {
             if (Hls.isSupported()) {

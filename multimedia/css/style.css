@@ -157,7 +157,7 @@ body {
   height: 100%;
   width: 64rem;
   padding-top: 1.13rem;
-  padding-bottom: 5rem; }
+  padding-bottom: 2rem; }
   @media only screen and (min-width: 112.5em) {
     .content {
       width: 80rem; } }
@@ -173,16 +173,54 @@ body {
       .content__header {
         margin-bottom: 1.19rem; } }
 
+.events {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 1.25rem;
+  grid-auto-flow: dense; }
+  @media only screen and (max-width: 56.25em) {
+    .events {
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 1rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .events {
+      grid-template-columns: 1fr;
+      grid-gap: 1rem; } }
+
+.card__s {
+  grid-column-start: span 2;
+  grid-row-start: span 1; }
+  @media only screen and (max-width: 37.5em) {
+    .card__s {
+      grid-column-start: span 1; } }
+
+.card__m {
+  grid-column-start: span 3;
+  grid-row-start: span 1; }
+  @media only screen and (max-width: 56.25em) {
+    .card__m {
+      grid-column-start: span 4; } }
+  @media only screen and (max-width: 37.5em) {
+    .card__m {
+      grid-column-start: span 1; } }
+
+.card__l {
+  grid-column-start: span 4;
+  grid-row-start: span 3; }
+  @media only screen and (max-width: 37.5em) {
+    .card__l {
+      grid-column-start: span 1; } }
+
 .grid {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: grid;
   grid-template-rows: 5.75rem 1fr 4rem;
   grid-template-columns: minmax(1.25rem, 1fr) 64rem minmax(1.25rem, 1fr);
   grid-template-areas: "header header header"  ". content ." "footer footer footer"; }
   @media only screen and (max-width: 56.25em) {
     .grid {
-      width: 100%;
       grid-template-rows: 4.13rem max-content minmax(3rem, 4rem);
       grid-template-columns: 1.25rem 1fr 1.25rem; } }
   .grid .header {
@@ -245,10 +283,6 @@ body {
         padding-bottom: .5rem;
         border-bottom: 1px solid #FAFAFA; }
 
-video {
-  width: 300px;
-  height: 200px; }
-
 .sstv__row {
   display: flex;
   justify-content: center;
@@ -260,6 +294,14 @@ video {
   height: 20rem; }
   .sstv__expanded > * {
     width: 100%; }
+
+.sstv__video__container {
+  position: relative; }
+
+.sstv__video {
+  width: 300px;
+  height: 200px;
+  position: relative; }
 
 .footer {
   display: flex;
@@ -278,6 +320,226 @@ video {
   @media only screen and (max-width: 37.5em) {
     .footer {
       display: none; } }
+
+.popup {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(51, 51, 51, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.12, 0.67, 0.66, 0.9); }
+  .popup:target {
+    opacity: 1;
+    visibility: visible; }
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    .popup {
+      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: blur(2px);
+      background: rgba(51, 51, 51, 0.5); } }
+  .popup__container {
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    min-width: 39.38rem; }
+    .popup__container--light {
+      top: 11.81rem; }
+    .popup__container--temperature {
+      top: 11.81rem; }
+    .popup__container--floor {
+      top: 6.25rem; }
+    .popup__container--sstv {
+      top: 11.81rem; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__container {
+        min-width: 20rem;
+        width: 20.88rem;
+        left: 1.25rem;
+        transform: translate(0%, 0%); }
+        .popup__container--light, .popup__container--temperature, .popup__container--floor {
+          top: 1.31rem; } }
+  .popup__content {
+    min-height: 14.88rem;
+    padding: 1.63rem 1.56rem 1.56rem 1.56rem;
+    background-color: white;
+    border-radius: 1.25rem; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__content {
+        height: 30.75rem;
+        padding: 1.75rem 1.67rem 2.17rem 1.67rem; } }
+  .popup__header {
+    display: flex; }
+    .popup__header--right {
+      margin-left: auto;
+      display: flex; }
+      @media only screen and (max-width: 37.5em) {
+        .popup__header--right {
+          display: none; } }
+    .popup__header__status-text {
+      margin-top: 0.38rem; }
+  .popup__settings {
+    margin-top: 1.25rem;
+    display: flex; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__settings {
+        width: 100%;
+        overflow-x: scroll; } }
+  .popup__controls {
+    margin-top: 1.56rem;
+    position: relative; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__controls {
+        transform: rotate(-90deg) translateX(-35%);
+        position: relative;
+        top: 14%; } }
+  .popup__slider {
+    margin: 0;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3.75rem;
+    border-radius: 1.88rem;
+    outline: none;
+    cursor: pointer;
+    position: relative; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__slider {
+        border-radius: 2.19rem;
+        width: 21rem; } }
+    .popup__slider--before, .popup__slider--after {
+      z-index: 1100;
+      display: block;
+      position: absolute;
+      top: 50%; }
+      .popup__slider--before--light, .popup__slider--after--light {
+        transform: translateY(-25%); }
+      .popup__slider--before--temperature, .popup__slider--after--temperature {
+        transform: translateY(-50%); }
+        @media only screen and (max-width: 37.5em) {
+          .popup__slider--before--temperature, .popup__slider--after--temperature {
+            transform: rotate(90deg) translateX(-25%); } }
+    .popup__slider--before {
+      left: 1rem; }
+      @media only screen and (max-width: 37.5em) {
+        .popup__slider--before {
+          left: .5rem; } }
+    .popup__slider--after {
+      right: 1rem; }
+      @media only screen and (max-width: 37.5em) {
+        .popup__slider--after {
+          right: -2.5rem; } }
+    .popup__slider:focus {
+      outline: none; }
+    .popup__slider--light {
+      background-image: linear-gradient(85deg, #FFE682 2%, #FF9E00 98%); }
+    .popup__slider--temperature {
+      background-image: linear-gradient(90deg, #068FFF 2%, #FFD800 51%, #F76B1C 100%); }
+    .popup__slider::-ms-thumb {
+      background: transparent;
+      height: 3.4rem;
+      width: 3.4rem;
+      border-radius: 50%;
+      border: 3px solid rgba(51, 51, 51, 0.1);
+      box-shadow: 0 0 0 4px #fff, 0 1px 10px -7px rgba(0, 0, 0, 0.5);
+      cursor: pointer; }
+    .popup__slider::-moz-range-thumb {
+      background: transparent;
+      height: 3.4rem;
+      width: 3.4rem;
+      border-radius: 50%;
+      border: 3px solid rgba(51, 51, 51, 0.1);
+      box-shadow: 0 0 0 4px #fff, 0 1px 10px -7px rgba(0, 0, 0, 0.5);
+      cursor: pointer; }
+    .popup__slider::-moz-range-track {
+      background: transparent; }
+    .popup__slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      background: transparent;
+      height: 3.4rem;
+      width: 3.4rem;
+      border-radius: 50%;
+      border: 3px solid rgba(51, 51, 51, 0.1);
+      box-shadow: 0 0 0 4px #fff, 0 1px 10px -7px rgba(0, 0, 0, 0.5);
+      cursor: pointer; }
+  .popup__thermostat {
+    z-index: 15;
+    width: 13.81rem;
+    height: 13.81rem;
+    margin: 1.25rem auto 0 auto;
+    position: relative;
+    background-image: url(../../assets/Oval@1x.png); }
+    @media only screen and (max-width: 37.5em) {
+      .popup__thermostat {
+        top: 50%;
+        transform: translateY(-60%); } }
+    .popup__thermostat--center {
+      z-index: 20;
+      position: absolute;
+      top: 1.38rem;
+      left: 1.38rem;
+      width: 11.13rem;
+      height: 11.13rem;
+      border-radius: 50%;
+      background: #FEFEFE;
+      box-shadow: 0 2px 4px 0 rgba(134, 121, 71, 0.45); }
+      .popup__thermostat--center--switcher {
+        width: 100%;
+        height: 0.61rem;
+        position: absolute;
+        top: 50%;
+        transform: rotate(-57deg); }
+      .popup__thermostat--center--triangle {
+        width: 0.61rem;
+        height: 0.61rem;
+        background: #333333;
+        transform: rotate(-90deg);
+        clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        cursor: pointer; }
+    .popup__thermostat__temperature {
+      margin-top: 3rem;
+      text-align: center; }
+    .popup__thermostat--right-bottom {
+      position: absolute;
+      height: 4.84rem;
+      width: 4.07rem;
+      top: 8.18rem;
+      right: .1rem;
+      background: #fff url("../../assets/Oval Copy.png") no-repeat;
+      opacity: 0.7; }
+      @supports (clip-path: polygon(0 0)) {
+        .popup__thermostat--right-bottom {
+          -webkit-clip-path: polygon(39px 3px, 101.54% 10px, 80.18% 63.26%, 20.15% 19.03vh, -2px 67.71%);
+          clip-path: polygon(39px 3px, 101.54% 10px, 80.18% 63.26%, 20.15% 19.03vh, -2px 67.71%); } }
+    .popup__thermostat--bottom {
+      position: absolute;
+      height: 2.15rem;
+      width: 7rem;
+      top: 11.75rem;
+      right: 3.26rem;
+      background-color: #fff; }
+      @supports (clip-path: polygon(0 0)) {
+        .popup__thermostat--bottom {
+          -webkit-clip-path: polygon(12px -1px, 96px -3px, 119px 32px, -9px 35px);
+          clip-path: polygon(12px -1px, 96px -3px, 119px 32px, -9px 35px); } }
+  .popup__buttons--container {
+    height: 10.56rem; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__buttons--container {
+        height: 14.08rem; } }
+  .popup__buttons--content {
+    margin-top: 1.25rem;
+    display: flex;
+    justify-content: space-between; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__buttons--content {
+        flex-direction: column; }
+        .popup__buttons--content > .btn {
+          margin-bottom: .94rem; } }
 
 .card {
   display: block;
@@ -552,3 +814,20 @@ video {
 
 .icon--header-nav {
   width: 1rem; }
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.75rem;
+  min-width: 19.19rem;
+  flex: 1 1 100%;
+  background-color: #FFFFFF;
+  border-radius: 1.25rem;
+  cursor: pointer; }
+  .btn:focus, .btn:active, .btn:hover {
+    background-color: #FFD93E;
+    color: black; }
+  @media only screen and (max-width: 37.5em) {
+    .btn {
+      width: 100%; } }

@@ -1,0 +1,285 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(51, 51, 51, 0.50);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: all .4s cubic-bezier(.12,.67,.66,.9);
+
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        background: rgba(51, 51, 51, 0.50);
+    }
+
+    &__container {
+        z-index: 100;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        min-width: 39.38rem;
+        &--light {
+            top: 11.81rem;   
+        }
+        &--temperature {
+            top: 11.81rem; 
+        }
+        &--floor {
+            top: 6.25rem;
+        }
+        &--sstv {
+            top: 11.81rem; 
+        }
+
+        @include responsive(phone) {
+            min-width:20rem;
+            width:20.88rem;
+            left: 1.25rem;
+            transform: translate(0%, 0%);
+            &--light,&--temperature, &--floor{
+                top: 1.31rem;
+            }
+        }
+    }
+    &__content {
+        min-height: 14.88rem;
+        padding: 1.63rem 1.56rem 1.56rem 1.56rem;
+        background-color: white;
+        border-radius: 1.25rem;
+        @include responsive(phone) {
+            height: 30.75rem;
+            padding: 1.75rem 1.67rem 2.17rem 1.67rem;
+        }
+    }
+    &__header {
+        display: flex;
+        &--right {
+            margin-left: auto;
+            display: flex;
+            @include responsive(phone) {
+                display: none;
+            }
+        }
+
+        &__status-text {
+            margin-top: 0.38rem;
+        }
+    }
+    &__settings {
+        margin-top: 1.25rem;
+        display: flex;
+        // &--item {
+        //     @include properties;
+        // }
+        @include responsive(phone) {
+            width: 100%;
+            overflow-x: scroll;
+        }
+    }
+    &__controls {
+        margin-top: 1.56rem;
+        position: relative;
+
+        @include responsive(phone) {
+            transform: rotate(-90deg) translateX(-35%);
+            position: relative;
+            top: 14%;
+        }
+    }
+    &__slider {
+        margin: 0;
+        -webkit-appearance: none;
+        width: 100%;
+        height: 3.75rem;
+        border-radius: 1.88rem;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+
+        @include responsive(phone) {
+            border-radius: 2.19rem;
+            width: 21rem;
+
+        }
+        &--before,&--after{
+            z-index: 1100;
+            display: block;
+            position: absolute;
+            top: 50%;
+
+            &--light{
+                transform: translateY(-25%);
+            }
+            &--temperature{
+                transform: translateY(-50%);
+                @include responsive(phone) {
+                    transform: rotate(90deg) translateX(-25%);
+                }
+            }
+        }
+        &--before{
+            left: 1rem;
+            
+            @include responsive(phone) {
+                left: .5rem;
+            }
+        }
+        &--after{
+            right: 1rem;
+            @include responsive(phone) {
+                right: -2.5rem;
+            }
+        }
+        &:focus {
+            outline: none;
+        }
+        &--light {
+            background-image: linear-gradient(85deg, #FFE682 2%, #FF9E00 98%);
+        }
+        &--temperature {
+            background-image: linear-gradient(90deg, #068FFF 2%, #FFD800 51%, #F76B1C 100%);
+            
+        } 
+        &::-ms-thumb{
+            background: transparent;
+            height: 3.4rem;
+            width: 3.4rem;
+            border-radius: 50%;
+            border: 3px solid rgba(51, 51, 51, 0.10);
+            box-shadow: 0 0 0 4px #fff, 0 1px 10px -7px rgba(0, 0, 0, 0.50);
+            cursor: pointer;
+            
+        }
+        &::-moz-range-thumb {
+            background: transparent;
+            height: 3.4rem;
+            width: 3.4rem;
+            border-radius: 50%;
+            border: 3px solid rgba(51, 51, 51, 0.10);
+            box-shadow: 0 0 0 4px #fff, 0 1px 10px -7px rgba(0, 0, 0, 0.50);
+            cursor: pointer;
+            
+        }
+        &::-moz-range-track {
+            background: transparent;
+            
+        }
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            background: transparent;
+            height: 3.4rem;
+            width: 3.4rem;
+            border-radius: 50%;
+            border: 3px solid rgba(51, 51, 51, 0.10);
+            box-shadow: 0 0 0 4px #fff, 0 1px 10px -7px rgba(0, 0, 0, 0.50);
+            cursor: pointer;
+        }
+
+    }
+
+    &__thermostat{
+        z-index: 15;
+        width: 13.81rem;
+        height: 13.81rem;
+        margin: 1.25rem auto 0 auto;
+        position: relative;
+        background-image: url(../../assets/Oval@1x.png);
+
+        @include responsive(phone) {
+            top: 50%;
+            transform: translateY(-60%);
+        }
+
+        &--center{
+            z-index: 20;
+            position: absolute;
+            top: 1.38rem;
+            left: 1.38rem;
+            width: 11.13rem;
+            height: 11.13rem;
+            border-radius: 50%;
+            background: #FEFEFE;
+            box-shadow: 0 2px 4px 0 rgba(134,121,71,0.45);
+
+            &--switcher{
+                width: 100%;
+                height: 0.61rem;
+                position: absolute;
+                top: 50%;
+                transform: rotate(-57deg);
+            }
+            &--triangle{
+                width: 0.61rem;
+                height: 0.61rem;
+                background: #333333;
+                transform: rotate(-90deg);
+                clip-path: polygon(0 100%, 50% 0, 100% 100%);
+                cursor: pointer;
+            }
+        }
+        &__temperature{
+            margin-top: 3rem;
+            text-align: center;
+        }
+        &--right-bottom{
+            position: absolute;
+            height: 4.84rem;
+            width: 4.07rem;
+            top: 8.18rem;
+            right: .1rem;
+
+            background:  #fff url('../../assets/Oval Copy.png')  no-repeat;
+            opacity: 0.7;
+
+            @supports( clip-path: polygon(0 0) or (-webkit-clip-path:polygon(0 0))) {
+                -webkit-clip-path: polygon(39px 3px, 101.54% 10px, 80.18% 63.26%, 20.15% 19.03vh, -2px 67.71%);
+                clip-path: polygon(39px 3px, 101.54% 10px, 80.18% 63.26%, 20.15% 19.03vh, -2px 67.71%);
+            }
+        }
+        &--bottom{
+            position: absolute;
+            height: 2.15rem;
+            width: 7rem;
+            top: 11.75rem;
+            right: 3.26rem;
+            background-color: #fff;
+            @supports( clip-path: polygon(0 0) or (-webkit-clip-path:polygon(0 0))) {
+                -webkit-clip-path: polygon(12px -1px, 96px -3px, 119px 32px, -9px 35px);
+                clip-path: polygon(12px -1px, 96px -3px, 119px 32px, -9px 35px);
+            }
+        }
+
+    }
+    &__buttons {
+        &--container {
+            height: 10.56rem;
+            @include responsive(phone) {
+                height: 14.08rem;
+            }
+        }
+        &--content {
+            margin-top: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            @include responsive(phone) {
+                flex-direction: column;
+                &>.btn{
+                    margin-bottom: .94rem;
+                }
+            }
+        }
+    }
+
+
+    
+}
