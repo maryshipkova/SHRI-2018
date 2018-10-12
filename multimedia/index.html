@@ -52,26 +52,26 @@
             <section class="sstv">
                 <div class="sstv__row">
                     <div class="sstv__video__container">
-                        <video id="video-1" class="sstv__video"  muted autoplay>
+                        <video id="video-1" class="sstv__video" muted autoplay>
                         </video>
-                        <a href="#popup-sstv" class="sstv__btn-expand">+</a>  
+                        <a href="#popup-sstv" class="sstv__btn-expand">+</a>
                     </div>
                     <div class="sstv__video__container">
-                        <video id="video-2" class="sstv__video"  muted autoplay></video>
-                        <a href="#popup-sstv" class="sstv__btn-expand">+</a>     
+                        <video id="video-2" class="sstv__video" muted autoplay></video>
+                        <a href="#popup-sstv" class="sstv__btn-expand">+</a>
                     </div>
                     <div class="sstv__video__container">
-                        <video id="video-3" class="sstv__video"  muted autoplay></video>
-                        <a href="#popup-sstv" class="sstv__btn-expand">+</a>     
+                        <video id="video-3" class="sstv__video" muted autoplay></video>
+                        <a href="#popup-sstv" class="sstv__btn-expand">+</a>
                     </div>
                     <div class="sstv__video__container">
-                        <video id="video-4" class="sstv__video"  muted autoplay></video>
-                        <a href="#popup-sstv" class="sstv__btn-expand">+</a>  
+                        <video id="video-4" class="sstv__video" muted autoplay></video>
+                        <a href="#popup-sstv" class="sstv__btn-expand">+</a>
                     </div>
 
                 </div>
 
-            </section>        
+            </section>
         </main>
 
 
@@ -100,47 +100,42 @@
             </ul>
         </footer>
     </div><!-- grid -->
-                    <!-- <div class="sstv__expanded"></div> -->
-                    <div class="popup" id="popup-sstv">
-                        <div class="popup__container popup__container--sstv">
-                            <div class="popup__content">
-                                <div class="sstv__expanded">
-                                </div>
-                                <div class="sstv__controls">
-                                    <div class="popup__controls">
-                                        <!-- <div class="popup__slider--before popup__slider--before--temperature">
-                                            <h3 class="heading--popup-slider">
-                                                &ndash;10
-                                            </h3> -->
-                                        </div>
-                                        <input id="input-contrast" type="range" min="1" max="200" value="100" class="popup__slider popup__slider--temperature">
-                                        <!-- <div class="popup__slider--after popup__slider--after--temperature">
-                                            <h3 class="heading--popup-slider">
-                                                +30
-                                            </h3>
-                                        </div> -->
-                                    </div>
-
-                                    <div class="popup__controls">
-
-                                        <input  id="input-brightness" type="range" min="1" max="200" value="100" class="popup__slider popup__slider--light">
-                                    </div>
-                                </div>
-                                <div class="popup__buttons--container">
-                                    <div class="popup__buttons--content">
-        
-                                        <a href="#" class="btn" id="close-btn">
-                                            <h3 class="heading--button">
-                                                Закрыть
-                                            </h3>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- popup-content -->
-
+    <!-- <div class="sstv__expanded"></div> -->
+    <div class="popup" id="popup-sstv">
+        <div class="popup__container popup__container--sstv">
+            <div class="popup__content">
+                <div class="sstv__expanded">
+                </div>
+                <div class="sstv__controls">
+                    <div class="sstv__controls__row">
+                        <div class="popup__controls">
+                            <input id="input-contrast" type="range" min="1" max="200" value="100" class="popup__slider popup__slider--temperature">
+                        </div>
+                        <div class="popup__controls">
+                            <input id="input-brightness" type="range" min="1" max="200" value="100" class="popup__slider popup__slider--light">
                         </div>
                     </div>
+                    <div class="sstv__volume">
+                        <canvas id="analyzer" width="30" height="150"></canvas>
+                    </div>
+
+                </div>
+            </div>
+            <div class="popup__buttons--container">
+                <div class="popup__buttons--content">
+
+                    <a href="#" class="btn" id="close-btn">
+                        <h3 class="heading--button">
+                            Закрыть
+                        </h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- popup-content -->
+
+    </div>
+    </div>
     <script>
         function initVideo(video, url) {
             if (Hls.isSupported()) {

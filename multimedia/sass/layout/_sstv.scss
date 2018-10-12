@@ -49,7 +49,17 @@
 
     &__controls{
         display: flex;
-        flex-direction: column;
+        &__row{
+            
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 90%;
+        }
     }
-
+    &__volume{
+        align-self: flex-end;
+        overflow: hidden;
+        border-radius: $grid-gap;
+        margin-left: $grid-gap;
+    }
 }

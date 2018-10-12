@@ -322,8 +322,17 @@ body {
   padding-top: .55rem; }
 
 .sstv__controls {
-  display: flex;
-  flex-direction: column; }
+  display: flex; }
+  .sstv__controls__row {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 90%; }
+
+.sstv__volume {
+  align-self: flex-end;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  margin-left: 1.25rem; }
 
 .footer {
   display: flex;
