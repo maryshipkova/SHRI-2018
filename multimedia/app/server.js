@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const fs =  require('fs');
 let startTime = Date.now();
 
 function getFormatTime() {
@@ -20,15 +21,24 @@ function getFormatTime() {
 }
 
 app.get('/status', (request, response) => {
-
-
-    // `${timeFromStart.getHours()}:${timeFromStart.getMinutes()}:${timeFromStart.getSeconds()}`
-
-    // timeFromStart.setHours(0,0,0,0);
-    console.log(request.url);
-
     response.send(getFormatTime());
+});
 
+app.get('/api/events', (request, response) => {
+
+    let events =' JSON.parse(data)';
+    fs.readFile('./events.json', function(err, data){
+        if(err){
+            console.error(err);
+        }else{
+            let events = JSON.parse(data);
+            // console.log(JSON.parse(data));
+            // response.send(events);
+            response.send(events);
+        }
+    });
+    console.log('ok');
+    // response.send(events);
 });
 
 app.use((err, request, response, next) => {
