@@ -20,29 +20,36 @@ function getFormatTime() {
 
 }
 
+function filterEventsByType(requestEvents, requestEventTypes){
+    let filteredEvents = requestEvents.events.filter(event => {
+            if(requestEventTypes.indexOf(event.type) !== -1){
+                return true;
+            }
+            return false;
+    });
+    return filteredEvents;
+
+}
 app.get('/status', (request, response) => {
     response.send(getFormatTime());
 });
 
 app.get('/api/events', (request, response) => {
 
-    let events =' JSON.parse(data)';
-    fs.readFile('./events.json', function(err, data){
+    fs.readFile('./events.json', function(err, events){
         if(err){
             console.error(err);
         }else{
-            let events = JSON.parse(data);
-            // console.log(JSON.parse(data));
-            // response.send(events);
-            response.send(events);
+            if(request.query.type){
+                response.json(filterEventsByType(JSON.parse(events), request.query.type.split(':')));
+            }else{
+                response.json(JSON.parse(events));
+            }
         }
     });
-    console.log('ok');
-    // response.send(events);
 });
 
 app.use((err, request, response, next) => {
-    // логирование ошибки, пока просто console.log
     console.log(err);
     response.status(500).send('Something broke!');
 })
