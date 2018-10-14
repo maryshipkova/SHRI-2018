@@ -2,7 +2,10 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const fs =  require('fs');
+
 let startTime = Date.now();
+const CORRECT_TYPES = ['info', 'critical'];
+
 
 function getFormatTime() {
 
@@ -30,9 +33,13 @@ function filterEventsByType(requestEvents, requestEventTypes){
     return filteredEvents;
 
 }
+
+
 app.get('/status', (request, response) => {
     response.send(getFormatTime());
 });
+
+
 
 app.get('/api/events', (request, response) => {
 
@@ -41,7 +48,17 @@ app.get('/api/events', (request, response) => {
             console.error(err);
         }else{
             if(request.query.type){
-                response.json(filterEventsByType(JSON.parse(events), request.query.type.split(':')));
+                const REQUEST_TYPES = request.query.type.split(':');
+
+                //type checking
+                REQUEST_TYPES.forEach(type =>{
+                    if( CORRECT_TYPES.indexOf(type) === -1){
+                        response.status(400).send('incorrect type');
+                        return;
+                    }
+                });
+
+                response.json(filterEventsByType(JSON.parse(events), REQUEST_TYPES));
             }else{
                 response.json(JSON.parse(events));
             }
@@ -49,9 +66,9 @@ app.get('/api/events', (request, response) => {
     });
 });
 
-app.use((err, request, response, next) => {
-    console.log(err);
-    response.status(500).send('Something broke!');
+//not found
+app.get('*', function(request, response){
+    response.status(404).send('<h1>Page not found</h1>');
 })
 
 app.listen(port);
