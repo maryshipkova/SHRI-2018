@@ -9,7 +9,7 @@ const port = 3000;
 let startTime = Date.now();
 const CORRECT_TYPES = ['info', 'critical'];
 
-
+//returns date in format hh::mm::ss
 function getFormatTime() {
 
     let millisecondsFromStart = Date.now() - startTime;
@@ -33,6 +33,7 @@ function filterEventsByType(requestEvents, requestEventTypes){
             }
             return false;
     });
+
     return filteredEvents;
 
 }
@@ -41,6 +42,7 @@ app.use( bodyParser.json() );       // support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // support URL-encoded bodies
   extended: true
 })); 
+
 
 app.get('/status', (request, response) => {
     response.send(getFormatTime());
@@ -64,7 +66,7 @@ app.post('/api/events',  (request, response) => {
                     }
                 });
 
-                response.json(filterEventsByType(JSON.parse(events), REQUEST_TYPES));
+                response.json( {'events':filterEventsByType(JSON.parse(events), REQUEST_TYPES)});
             }else{
                 response.json(JSON.parse(events));
             }
