@@ -218,7 +218,7 @@ body {
   display: grid;
   grid-template-rows: 5.75rem 1fr 4rem;
   grid-template-columns: minmax(1.25rem, 1fr) 64rem minmax(1.25rem, 1fr);
-  grid-template-areas: "header header header"  ". content ." "footer footer footer"; }
+  grid-template-areas: "header header header"  ". content ." "footer footer footer"; }
   @media only screen and (max-width: 56.25em) {
     .grid {
       grid-template-rows: 4.13rem max-content minmax(3rem, 4rem);
@@ -289,8 +289,8 @@ body {
   flex-wrap: wrap; }
 
 .sstv__expanded {
-  width: 34rem;
-  height: 20rem;
+  width: 100%;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -301,6 +301,8 @@ body {
 
 .sstv__video__container {
   position: relative; }
+  .sstv__video__container:hover .sstv__btn-expand {
+    opacity: .4; }
 
 .sstv__video {
   width: 300px;
@@ -308,6 +310,7 @@ body {
   position: relative; }
 
 .sstv__btn-expand {
+  opacity: 0;
   position: absolute;
   left: 50%;
   top: 10%;
@@ -318,7 +321,6 @@ body {
   border-radius: 50%;
   text-align: center;
   background-color: #fff;
-  opacity: .4;
   padding-top: .55rem; }
 
 .sstv__controls {
@@ -375,7 +377,7 @@ body {
   .popup__container {
     z-index: 100;
     position: absolute;
-    top: 50%;
+    bottom: 10%;
     left: 50%;
     transform: translate(-50%, 0%);
     min-width: 39.38rem; }
@@ -390,14 +392,14 @@ body {
     @media only screen and (max-width: 37.5em) {
       .popup__container {
         min-width: 20rem;
-        width: 20.88rem;
         left: 1.25rem;
+        right: 1.25rem;
         transform: translate(0%, 0%); }
         .popup__container--light, .popup__container--temperature, .popup__container--floor {
           top: 1.31rem; } }
   .popup__content {
-    min-height: 14.88rem;
-    padding: 1.63rem 1.56rem 1.56rem 1.56rem;
+    max-height: 14.88rem;
+    padding: 0 1.56rem 1.56rem 1.25rem;
     background-color: white;
     border-radius: 1.25rem; }
     @media only screen and (max-width: 37.5em) {
@@ -422,13 +424,8 @@ body {
         width: 100%;
         overflow-x: scroll; } }
   .popup__controls {
-    margin-top: 1.56rem;
+    margin-top: 1.25rem;
     position: relative; }
-    @media only screen and (max-width: 37.5em) {
-      .popup__controls {
-        transform: rotate(-90deg) translateX(-35%);
-        position: relative;
-        top: 14%; } }
   .popup__slider {
     margin: 0;
     -webkit-appearance: none;
@@ -440,8 +437,7 @@ body {
     position: relative; }
     @media only screen and (max-width: 37.5em) {
       .popup__slider {
-        border-radius: 2.19rem;
-        width: 21rem; } }
+        border-radius: 2.19rem; } }
     .popup__slider--before, .popup__slider--after {
       z-index: 1100;
       display: block;
@@ -592,17 +588,17 @@ body {
     flex: 1 0;
     grid-area: info;
     display: grid;
-    grid-template-areas: "description description" "data data";
+    grid-template-areas: "description description" "data data";
     position: relative; }
   .card__s .card__type--top,
   .card__s .card__type--bottom {
     grid-row-gap: 1.25rem; }
   .card__s .card__type--top {
     padding: 0.86rem 1.25rem 1.25rem 1.31rem;
-    grid-template-areas: "header header" "source source" "time time"; }
+    grid-template-areas: "header header" "source source" "time time"; }
     @media only screen and (max-width: 37.5em) {
       .card__s .card__type--top {
-        grid-template-areas: "header header" "source time"; } }
+        grid-template-areas: "header header" "source time"; } }
     @media only screen and (max-width: 37.5em) {
       .card__s .card__type--top {
         padding: 1rem; } }
@@ -615,7 +611,7 @@ body {
   .card__m .card__type--bottom {
     grid-row-gap: 1.33rem; }
   .card__m .card__type--top {
-    grid-template-areas: "header header" "source time";
+    grid-template-areas: "header header" "source time";
     padding: 1.25rem 1.25rem 0.5rem 1.25rem; }
     @media only screen and (max-width: 37.5em) {
       .card__m .card__type--top {
@@ -631,7 +627,7 @@ body {
   .card__l .card__type--bottom {
     grid-row-gap: 1.5rem; }
   .card__l .card__type--top {
-    grid-template-areas: " header header" "source time";
+    grid-template-areas: " header header" "source time";
     padding: 1.25rem; }
     @media only screen and (max-width: 37.5em) {
       .card__l .card__type--top {

@@ -14,6 +14,7 @@
     &:target {
         opacity: 1;
         visibility: visible;
+        
     }
     @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
         -webkit-backdrop-filter: blur(2px);
@@ -24,10 +25,11 @@
     &__container {
         z-index: 100;
         position: absolute;
-        top: 50%;
+        bottom: 10%;
         left: 50%;
         transform: translate(-50%, 0%);
         min-width: 39.38rem;
+
         &--light {
             top: 11.81rem;   
         }
@@ -43,8 +45,8 @@
 
         @include responsive(phone) {
             min-width:20rem;
-            width:20.88rem;
             left: 1.25rem;
+            right: 1.25rem;
             transform: translate(0%, 0%);
             &--light,&--temperature, &--floor{
                 top: 1.31rem;
@@ -52,8 +54,8 @@
         }
     }
     &__content {
-        min-height: 14.88rem;
-        padding: 1.63rem 1.56rem 1.56rem 1.56rem;
+        max-height: 14.88rem;
+        padding: 0 1.56rem 1.56rem 1.25rem;
         background-color: white;
         border-radius: 1.25rem;
         @include responsive(phone) {
@@ -87,14 +89,14 @@
         }
     }
     &__controls {
-        margin-top: 1.56rem;
+        margin-top: 1.25rem;
         position: relative;
 
-        @include responsive(phone) {
-            transform: rotate(-90deg) translateX(-35%);
-            position: relative;
-            top: 14%;
-        }
+        // @include responsive(phone) {
+        //     transform: rotate(-90deg) translateX(-35%);
+        //     position: relative;
+        //     top: 14%;
+        // }
     }
     &__slider {
         margin: 0;
@@ -108,7 +110,6 @@
 
         @include responsive(phone) {
             border-radius: 2.19rem;
-            width: 21rem;
 
         }
         &--before,&--after{
