@@ -1,9 +1,15 @@
 const express = require('express');
+var bodyParser = require("body-parser");
+const fs = require('fs');
+
 const app = express();
 const port = 3000;
-const fs =  require('fs');
-let startTime = Date.now();
 
+
+let startTime = Date.now();
+const CORRECT_TYPES = ['info', 'critical'];
+
+//returns date in format hh::mm::ss
 function getFormatTime() {
 
     let millisecondsFromStart = Date.now() - startTime;
@@ -20,31 +26,57 @@ function getFormatTime() {
 
 }
 
+function filterEventsByType(requestEvents, requestEventTypes){
+    let filteredEvents = requestEvents.events.filter(event => {
+            if(requestEventTypes.indexOf(event.type) !== -1){
+                return true;
+            }
+            return false;
+    });
+
+    return filteredEvents;
+
+}
+
+app.use( bodyParser.json() );       // support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // support URL-encoded bodies
+  extended: true
+})); 
+
+
 app.get('/status', (request, response) => {
     response.send(getFormatTime());
 });
 
-app.get('/api/events', (request, response) => {
 
-    let events =' JSON.parse(data)';
-    fs.readFile('./events.json', function(err, data){
+
+app.post('/api/events',  (request, response) => {
+    fs.readFile('./events.json', function(err, events){
         if(err){
             console.error(err);
         }else{
-            let events = JSON.parse(data);
-            // console.log(JSON.parse(data));
-            // response.send(events);
-            response.send(events);
+            if(request.body.type){
+                const REQUEST_TYPES = request.body.type.split(':');
+
+                //type checking
+                REQUEST_TYPES.forEach(type =>{
+                    if( CORRECT_TYPES.indexOf(type) === -1){
+                        response.status(400).send('incorrect type');
+                        return;
+                    }
+                });
+
+                response.json( {'events':filterEventsByType(JSON.parse(events), REQUEST_TYPES)});
+            }else{
+                response.json(JSON.parse(events));
+            }
         }
     });
-    console.log('ok');
-    // response.send(events);
 });
 
-app.use((err, request, response, next) => {
-    // логирование ошибки, пока просто console.log
-    console.log(err);
-    response.status(500).send('Something broke!');
+//not found
+app.get('*', function(request, response){
+    response.status(404).send('<h1>Page not found</h1>');
 })
 
 app.listen(port);
