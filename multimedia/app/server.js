@@ -8,8 +8,12 @@ const port = 3000;
 
 
 let startTime = Date.now();
+
+//const variables
 const CORRECT_TYPES = ["info", "critical"];
 const EVENTS_FILE = "./events.json";
+const EVENTS_PER_PAGE = 5;
+
 //returns date in format hh::mm::ss
 function getFormatTime() {
 
@@ -71,10 +75,20 @@ app.post("/api/events",  (request, response) => {
 
 		// readeble returns null
 		if(request.body.type && events != null){
+
 			const REQUEST_TYPES = request.body.type.split(":");
 
 			if(validateRequestTypes(REQUEST_TYPES) === true){
-				response.json( {"events":filterEventsByType(JSON.parse(events), REQUEST_TYPES)});
+
+				let jsonEvents = JSON.parse(events),
+					page = request.body.page,
+					responseEvents = filterEventsByType(jsonEvents, REQUEST_TYPES);
+
+				//page param for pagination
+				if(page){
+					responseEvents = responseEvents.slice((page-1)*EVENTS_PER_PAGE,page*EVENTS_PER_PAGE);
+				}
+				response.json( {"events": responseEvents});
 			}else{
 				response.status(400).send("incorrect type");
 			}
