@@ -1,7 +1,10 @@
 const express = require('express');
+var bodyParser = require("body-parser");
+const fs = require('fs');
+
 const app = express();
 const port = 3000;
-const fs =  require('fs');
+
 
 let startTime = Date.now();
 const CORRECT_TYPES = ['info', 'critical'];
@@ -34,6 +37,10 @@ function filterEventsByType(requestEvents, requestEventTypes){
 
 }
 
+app.use( bodyParser.json() );       // support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // support URL-encoded bodies
+  extended: true
+})); 
 
 app.get('/status', (request, response) => {
     response.send(getFormatTime());
@@ -41,14 +48,13 @@ app.get('/status', (request, response) => {
 
 
 
-app.get('/api/events', (request, response) => {
-
+app.post('/api/events',  (request, response) => {
     fs.readFile('./events.json', function(err, events){
         if(err){
             console.error(err);
         }else{
-            if(request.query.type){
-                const REQUEST_TYPES = request.query.type.split(':');
+            if(request.body.type){
+                const REQUEST_TYPES = request.body.type.split(':');
 
                 //type checking
                 REQUEST_TYPES.forEach(type =>{
