@@ -7,7 +7,7 @@
     "watch:sass": "node-sass sass/main.scss css/style.css -w",
     "devserver": "live-server",
     "start": "npm-run-all --parallel devserver watch:sass",
-    "lint": "eslint sstv.js --fix"
+    "lint": "eslint sstv --fix"
   },
   "author": "Maria Shipkova",
   "license": "ISC",
