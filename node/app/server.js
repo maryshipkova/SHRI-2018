@@ -37,13 +37,13 @@ function getFormatTime() {
 }
 
 function filterEventsByType(events, eventTypes) {
-	return events ? events.filter(event => eventTypes.includes(event.type)) : events;
+	return eventTypes ? events.filter(event => eventTypes.includes(event.type)) : events;
 
 }
 
 //returns true if request types are correct 
 function validateRequestTypes(eventTypes) {
-	return eventTypes.every(type => CORRECT_EVENT_TYPES.includes(type));
+	return !eventTypes || eventTypes.every(type => CORRECT_EVENT_TYPES.includes(type));
 }
 
 function getEventsbyPage(events, page) {
@@ -64,7 +64,7 @@ app.post('/api/events', (request, response) => {
 			const EVENTS = JSON.parse(data).events,
 				REQUEST_EVENT_TYPES = request.body.type ? request.body.type.split(':') : null,
 				REQUEST_PAGE = request.body.page > 0 ? request.body.page : null;
-
+			
 			if (validateRequestTypes(REQUEST_EVENT_TYPES)) {
 				response.json({'events': getEventsbyPage(filterEventsByType(EVENTS, REQUEST_EVENT_TYPES), REQUEST_PAGE)});
 			}
