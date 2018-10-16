@@ -63,7 +63,7 @@ app.post('/api/events', (request, response) => {
 		} else {
 			const EVENTS = JSON.parse(data).events,
 				REQUEST_EVENT_TYPES = request.body.type ? request.body.type.split(':') : null,
-				REQUEST_PAGE = request.body.page ? (request.body.page > 0 ? request.body.page : null) : null;
+				REQUEST_PAGE = request.body.page > 0 ? request.body.page : null;
 
 			if (validateRequestTypes(REQUEST_EVENT_TYPES)) {
 				response.json({'events': getEventsbyPage(filterEventsByType(EVENTS, REQUEST_EVENT_TYPES), REQUEST_PAGE)});
