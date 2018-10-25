@@ -7,13 +7,13 @@
     "watch:sass": "node-sass sass/main.scss css/style.css -w",
     "devserver": "live-server",
     "start": "npm-run-all --parallel devserver watch:sass",
-    "server": "nodemon app/server.js",
-    "lint": "tslint sstv/main.ts sstv/ExpandedCamera.ts sstv/Analyse.ts  --fix"
+    "lint": "tslint sstv/*.ts  --fix",
+    "tsc": "tsc sstv/Analyse.ts  sstv/ExpandedCamera.ts sstv/main.ts sstv/util.ts "
   },
   "author": "Maria Shipkova",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^5.7.0",
+    "@types/webaudioapi": "0.0.27",
     "live-server": "^1.2.0",
     "node-sass": "^4.9.3",
     "nodemon": "^1.18.4",
@@ -22,7 +22,6 @@
     "typescript": "^3.1.3"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "@types/web-animations-js": "^2.2.6"
   }
 }
