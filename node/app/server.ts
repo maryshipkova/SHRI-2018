@@ -4,7 +4,7 @@ import * as fs from "fs";
 import {IEventModel} from "./IEventModel";
 
 const app: express.Application = express();
-const port = 8000;
+const port = 6000;
 
 const startTime = Date.now();
 

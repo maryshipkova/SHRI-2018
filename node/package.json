@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon dist/server.js",
+    "server": "nodemon app/server.ts",
+    "tsserver": "ts-node  ./app/server.ts",
     "lint": "tslint app/*.ts --fix",
     "tsc": "tsc --build tsconfig.json"
   },
