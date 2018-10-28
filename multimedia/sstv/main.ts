@@ -1,7 +1,6 @@
 import {CANVAS} from "./Analyse";
 import {ExpandedCamera} from "./ExpandedCamera";
-import {IControls, ISstvSelectors, IVIdeoELement} from "./utils";
-
+import {IControls, ISstvSelectors, IVideoELement} from "./utils";
 
 const CONTROLS: IControls = {
     brightness: document.querySelector("#input-brightness"),
@@ -16,7 +15,7 @@ const SSTV_SELECTORS: ISstvSelectors = {
 
 // class for holding videos info
 class SSTVControl {
-    private videoList: IVIdeoELement[];
+    private videoList: IVideoELement[];
 
     constructor(videoSelector: string) {
 
@@ -25,25 +24,26 @@ class SSTVControl {
         // get videos from html
         document.querySelectorAll(videoSelector).forEach((video, num) => {
             const expandBtn = document.querySelectorAll(".sstv__btn-expand")[num];
-            if (document.querySelector(`#video-${num + 1}`)) {
-                this.videoList.push({
-                    id: num,
-                    element: document.querySelector(`#video-${num + 1}`),
-                    expandBtn,
-                });
-            }
+            const videoElement: HTMLVideoElement | null = document.querySelector(`#video-${num + 1}`);
+            this.videoList.push({
+                id: num,
+                element: videoElement ? videoElement : new HTMLVideoElement(),
+                expandBtn,
+            } as IVideoELement);
         });
 
         // saving additional info && adding click event to expand
-        this.videoList.forEach((videoItem: IVIdeoELement) => {
+        this.videoList.forEach((videoItem: IVideoELement) => {
             videoItem.boundingClientRect = videoItem.element.getBoundingClientRect();
-            videoItem.expandBtn.addEventListener("click", this._expandVideo.bind(videoItem));
+            videoItem.expandBtn.addEventListener("click", (event) => {
+                this._expandVideo(videoItem);
+            });
         });
     }
 
     // init video opening
-    private _expandVideo(): void {
-        const videoElement: IVIdeoELement = this;
+    private _expandVideo(videoItem: IVideoELement): void {
+        const videoElement: IVideoELement = videoItem;
         const expandedCamera = new ExpandedCamera(videoElement, CONTROLS, SSTV_SELECTORS, CANVAS);
     }
 }

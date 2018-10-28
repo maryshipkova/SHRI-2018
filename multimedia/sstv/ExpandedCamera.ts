@@ -1,14 +1,14 @@
 import {Analyse, resetCanvas} from "./Analyse";
-import {IControls, ISstvSelectors, IVIdeoELement} from "./utils";
+import {IControls, ISstvSelectors, IVideoELement} from "./utils";
 
 export class ExpandedCamera {
     private analyser: Analyse;
-    private video: IVIdeoELement;
+    private video: IVideoELement;
     private properties: IControls;
     private canvas: HTMLCanvasElement;
     private sstvSelectors: ISstvSelectors;
 
-    constructor(video: IVIdeoELement, controls: IControls, sstvSelectors: ISstvSelectors, canvas: HTMLCanvasElement) {
+    constructor(video: IVideoELement, controls: IControls, sstvSelectors: ISstvSelectors, canvas: HTMLCanvasElement) {
 
         this.video = video;
         this.properties = controls;
@@ -76,19 +76,12 @@ export class ExpandedCamera {
 
     // animation of expanding
     public _animateVideo() {
-        if (!this.sstvSelectors.sstvContainer) {
-            return;
-        }
-        const sstvBoundingRect = this.sstvSelectors.sstvContainer.getBoundingClientRect();
-
-
-        this.sstvSelectors.sstvContainer.animate({
-            opacity: [0.5, 1],
-            transform: ['scale(0.5)', 'scale(1)']
-        }, {
-            duration: 200,
-        });
-
+        // if (!this.sstvSelectors.sstvContainer) {
+        //     return;
+        // }
+        // const sstvBoundingRect = this.sstvSelectors.sstvContainer.getBoundingClientRect();
+        //
+        //
         // this.sstvSelectors.sstvContainer.animate([
         //     { // from
         //         width: `${this.video.boundingClientRect.width}px`,

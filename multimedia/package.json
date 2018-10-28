@@ -8,7 +8,7 @@
     "devserver": "live-server",
     "start": "npm-run-all --parallel devserver watch:sass",
     "lint": "tslint sstv/*.ts  --fix",
-    "tsc": "tsc sstv/Analyse.ts  sstv/ExpandedCamera.ts sstv/main.ts sstv/util.ts "
+    "tsc": "tsc --build tsconfig.json"
   },
   "author": "Maria Shipkova",
   "license": "ISC",

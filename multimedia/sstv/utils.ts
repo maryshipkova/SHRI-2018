@@ -1,4 +1,4 @@
-export interface IVIdeoELement {
+export interface IVideoELement {
     expandBtn: Element;
     boundingClientRect: ClientRect | DOMRect;
     id: number;
