@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon app/server.js",
-    "lint": "tslint app/server.ts --fix",
-    "tsc": "tsc app/IEventModel.ts app/server.ts"
+    "server": "nodemon dist/server.js",
+    "lint": "tslint app/*.ts --fix",
+    "tsc": "tsc --build tsconfig.json"
   },
   "author": "Maria Shipkova",
   "license": "ISC",

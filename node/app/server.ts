@@ -60,7 +60,7 @@ app.post("/api/events", (request: express.Request, response: express.Response) =
             console.error(err);
         } else {
             const EVENTS: IEventModel[] = JSON.parse(data.toString()).events;
-            const REQUEST_EVENT_TYPES: string[] =  request.body.type ? request.body.type.split(":") : null;
+            const REQUEST_EVENT_TYPES: string[] = request.body.type ? request.body.type.split(":") : null;
             const REQUEST_PAGE: number = request.body.page > 0 ? request.body.page : null;
 
             if (validateRequestTypes(REQUEST_EVENT_TYPES)) {
